@@ -1,7 +1,7 @@
 export default function page() {
   return (
-    <div>
+    <header>
       <h1>KRYPTON</h1>
-    </div>
+    </header>
   )
 }
