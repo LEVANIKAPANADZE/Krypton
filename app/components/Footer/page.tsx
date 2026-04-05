@@ -8,7 +8,7 @@ export default function page() {
       <h2>KRYPTON</h2>
 
       {arr.map((element, index) => (
-        <Link href={"/element"} key={index}>
+        <Link href={`/${element.toLowerCase()}`} key={index}>
           {element}
         </Link>
       ))}
