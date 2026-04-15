@@ -7,11 +7,14 @@ export default function page() {
     <footer>
       <h2>KRYPTON</h2>
 
-      {arr.map((element, index) => (
-        <Link href={`/${element.toLowerCase()}`} key={index}>
-          {element}
-        </Link>
-      ))}
+      <nav>
+        {" "}
+        {arr.map((element, index) => (
+          <Link href={`/${element.toLowerCase()}`} key={index}>
+            {element}
+          </Link>
+        ))}
+      </nav>
 
       <p>
         Empowering students to explore the world of chemistry through
