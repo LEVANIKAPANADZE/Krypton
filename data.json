@@ -1,0 +1,12 @@
+[
+  {
+    "id": "atom-01",
+    "title": "GENERAL CHEMISTRY explained in 19 Minutes",
+    "description": "Quick and clear explanation of general chemistry fundamentals in 19 minutes",
+    "tags": ["chemistry", "basics", "science"],
+    "type": "resource",
+    "grade": "7+",
+    "platform": "youtube",
+    "link": "https://www.youtube.com/watch?v=5iTOphGnCtg"
+  }
+]

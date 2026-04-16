@@ -5,6 +5,8 @@ export default function page() {
 
   return (
     <footer>
+      <hr />
+
       <h2>KRYPTON</h2>
 
       <nav>
@@ -16,7 +18,7 @@ export default function page() {
         ))}
       </nav>
 
-      <p>
+      <p className="text-gray-500">
         Empowering students to explore the world of chemistry through
         interactive lessons, clear explanations, and engaging learning
         experiences. Our mission is to make science simple, understandable, and
