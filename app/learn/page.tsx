@@ -14,7 +14,7 @@ export default function Learn() {
       <h1>{type || "all"}</h1>
 
       {filtered.map((item) => (
-        <div key={item.id}>
+        <div className="" key={item.id}>
           <h3>{item.title}</h3>
           <p>{item.description}</p>
         </div>
