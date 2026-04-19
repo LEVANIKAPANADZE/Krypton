@@ -27,6 +27,16 @@ export default function page() {
         transform chemistry from something complex and overwhelming into
         something intuitive, interesting, and genuinely enjoyable.
       </p>
+
+      <div>
+        <h3>DEVELOPERS:</h3>
+        <a href="https://my-contacts-hazel.vercel.app" target="_blank">
+          Kapanadze Levani
+        </a>
+        <a href="" target="_blank">
+          Nika Feradze
+        </a>
+      </div>
     </footer>
   );
 }
