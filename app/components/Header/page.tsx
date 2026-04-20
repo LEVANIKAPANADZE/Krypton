@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Header() {
   const navItems = [
     { icon: "/navIcons/icon-nav-home.svg", path: "/" },
-    { icon: "/navIcons/icon-nav-movies.svg", path: "/learn?type=resource" },
-    { icon: "/navIcons/icon-nav-bookmark.svg", path: "/learn?type=task" },
-    { icon: "/navIcons/icon-nav-tv-series.svg", path: "/learn?type=project" },
+    { icon: "/navIcons/icon-nav-movies.svg", path: "/resource" },
+    { icon: "/navIcons/icon-nav-bookmark.svg", path: "/project" },
+    { icon: "/navIcons/icon-nav-tv-series.svg", path: "/task" },
   ];
 
   return (

@@ -1,7 +1,12 @@
 import Link from "next/link";
 
 export default function page() {
-  const arr = ["HOME", "RESOURCES", "PROJECTS", "TASKS"];
+  const navItems = [
+    { name: "HOME", path: "/" },
+    { name: "RESOURCES", path: "/resource" },
+    { name: "PROJECTS", path: "/project" },
+    { name: "TASKS", path: "/task" },
+  ];
 
   return (
     <footer>
@@ -10,10 +15,9 @@ export default function page() {
       <h2>KRYPTON</h2>
 
       <nav>
-        {" "}
-        {arr.map((element, index) => (
-          <Link href={`/${element.toLowerCase()}`} key={index}>
-            {element}
+        {navItems.map((item, index) => (
+          <Link href={item.path} key={index}>
+            {item.name}
           </Link>
         ))}
       </nav>
