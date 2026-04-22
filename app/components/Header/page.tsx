@@ -9,17 +9,21 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full flex justify-between items-center p-4 md:p-6">
+    <header className="w-full max-w-4xl mx-auto flex justify-between items-center p-4 md:p-6 xl:p-8 xl:rounded-xl">
       <img
         src="/image.png"
         alt="logo"
-        className="w-6 h-6 rounded-md md:w-8 md:h-8"
+        className="w-6 h-6 rounded-md md:w-8 md:h-8 xl:w-10 xl:h-10"
       />
 
-      <div className="flex gap-4 md:gap-6">
+      <div className="flex gap-4 md:gap-6 xl:gap-8">
         {navItems.map((item, index) => (
           <Link href={item.path} key={index}>
-            <img src={item.icon} alt="nav" className="w-6 h-6 md:w-7 md:h-7" />
+            <img
+              src={item.icon}
+              alt="nav"
+              className="w-6 h-6 md:w-7 md:h-7 xl:w-9 xl:h-9"
+            />
           </Link>
         ))}
       </div>
@@ -27,7 +31,7 @@ export default function Header() {
       <img
         src="/image.png"
         alt="logo"
-        className="w-6 h-6 rounded-md md:w-8 md:h-8"
+        className="w-6 h-6 rounded-md md:w-8 md:h-8 xl:w-10 xl:h-10"
       />
     </header>
   );

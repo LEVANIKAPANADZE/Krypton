@@ -26,8 +26,15 @@ export default async function Page({ params }: Props) {
 
       {filtered.map((item) => (
         <div key={item.id}>
+          <img src={item.icon} alt="Platfrom icon" />
           <h3>{item.title}</h3>
           <p>{item.description}</p>
+          <span>{item.type}</span>
+          <span>{item.grade}</span>
+          <div>
+            <span>{item.tags}</span>
+          </div>{" "}
+          <a href={item.link}>View</a>
         </div>
       ))}
     </main>

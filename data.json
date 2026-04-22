@@ -4,9 +4,9 @@
     "title": "GENERAL CHEMISTRY explained in 19 Minutes",
     "description": "Quick and clear explanation of general chemistry fundamentals in 19 minutes",
     "tags": ["chemistry", "basics", "science"],
+    "icon": "/youtube.png",
     "type": "resource",
     "grade": "7+",
-    "platform": "youtube",
     "link": "https://www.youtube.com/watch?v=5iTOphGnCtg"
   }
 ]
