@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function page() {
   return (
     <div>
@@ -8,9 +10,15 @@ export default function page() {
           </h1>
           <p className="text-gray-500">A simple chemistry learning platform.</p>
 
-          <button className="mt-4 px-5 py-2 md:px-6 md:py-3 xl:px-8 xl:py-4 rounded-lg bg-cyan-500 text-black font-medium hover:bg-cyan-400">
+          <Link
+            href="/project"
+            className="mt-4 px-5 py-2 md:px-6 md:py-3 
+            xl:px-8 xl:py-4 rounded-lg 
+            bg-cyan-500 text-black inline-block
+            font-medium hover:bg-cyan-400"
+          >
             View School Projects
-          </button>
+          </Link>
         </section>
 
         <section className="max-w-2xl space-y-3 p-6 border border-gray-200 rounded-xl">

@@ -8,5 +8,15 @@
     "type": "resource",
     "grade": "7+",
     "link": "https://www.youtube.com/watch?v=5iTOphGnCtg"
+  },
+  {
+    "id": "chem-study-01",
+    "title": "How to study CHEMISTRY so FAST that it feels ILLEGAL",
+    "description": "Efficient strategies and memory hacks to master chemistry quickly.",
+    "tags": ["productivity", "science"],
+    "icon": "/youtube.png",
+    "type": "resource",
+    "grade": "7+",
+    "link": "https://www.youtube.com/watch?v=0oHMoSSelo0"
   }
 ]
