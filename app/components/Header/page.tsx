@@ -9,7 +9,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full max-w-4xl mx-auto flex justify-between items-center p-4 md:p-6 xl:p-8 xl:rounded-xl">
+    <header className="w-full max-w-4xl mx-auto flex justify-between items-center p-4 md:p-6 xl:p-8 xl:rounded-xl bg-gray-800">
       <img
         src="/image.png"
         alt="logo"

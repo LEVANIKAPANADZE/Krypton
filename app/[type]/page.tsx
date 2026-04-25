@@ -42,7 +42,6 @@ export default async function Page({ params }: Props) {
             >
               <div>
                 <div className="flex justify-between items-start mb-6">
-                  {/* Icon with Glow */}
                   <div className="relative">
                     <img
                       src={item.icon}
