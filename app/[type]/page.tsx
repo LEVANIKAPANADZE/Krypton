@@ -20,7 +20,6 @@ export default async function Page({ params }: Props) {
   return (
     <main className="min-h-screen bg-black text-white p-6 md:p-12 xl:p-20 antialiased">
       <div className="max-w-[1400px] mx-auto">
-        {/* Responsive Header */}
         <header className="mb-10 md:mb-16 border-l-4 border-cyan-500 pl-5 md:pl-8">
           <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold capitalize tracking-tighter">
             {type}s
@@ -30,7 +29,7 @@ export default async function Page({ params }: Props) {
           </p>
         </header>
 
-        {/* The Grid: 1 col (mobile) | 2 cols (tablet) | 3 cols (desktop) */}
+      
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((item) => (
             <a
