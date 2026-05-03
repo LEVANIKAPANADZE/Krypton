@@ -1,5 +1,5 @@
-import Header from "./components/Header/page";
-import Footer from "./components/Footer/page";
+import Header from "../components/Header/page";
+import Footer from "../components/Footer/page";
 import type { Metadata } from "next";
 import "./globals.css";
 
