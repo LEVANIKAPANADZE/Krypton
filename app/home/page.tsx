@@ -13,9 +13,9 @@ export default function page() {
           <Link
             href="/project"
             className="mt-4 px-5 py-2 md:px-6 md:py-3 
-            xl:px-8 xl:py-4 rounded-lg 
-            bg-cyan-500 text-black inline-block
-            font-medium hover:bg-cyan-400"
+		xl:px-8 xl:py-4 rounded-lg 
+		bg-cyan-500 text-black inline-block
+		font-medium hover:bg-cyan-400"
           >
             View School Projects
           </Link>
