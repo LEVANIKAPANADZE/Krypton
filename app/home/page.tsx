@@ -1,23 +1,27 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import Description from "../../description.json";
 
 export default function Page() {
+  const t = useTranslations("HomePage");
+
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10 md:px-12 xl:px-20">
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
         <section className="space-y-6 mt-10">
           <div className="inline-block px-4 py-1 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 text-sm">
-            Chemistry Learning Platform
+            {t("badge")}
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-wide">
-            <span className="text-white">KRYP</span>
-            <span className="text-cyan-400">TON</span>
+            <span className="text-white">{t("titleWhite")}</span>
+            <span className="text-cyan-400">{t("titleBlue")}</span>
           </h1>
 
           <p className="text-gray-400 max-w-2xl text-lg md:text-xl leading-relaxed">
-            Learn chemistry through clean explanations, organized lessons, and
-            simple structured content built for students.
+            {t("heroDescription")}
           </p>
 
           <div className="pt-3">
@@ -35,7 +39,7 @@ export default function Page() {
                 transition-all duration-300
               "
             >
-              View School Projects →
+              {t("button")}
             </Link>
           </div>
         </section>
@@ -73,11 +77,12 @@ export default function Page() {
             p-10
           "
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Learn Smarter</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {t("learnSmarter")}
+          </h2>
 
           <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Krypton focuses on clarity and structure so students spend less time
-            memorizing and more time understanding chemistry concepts.
+            {t("learnSmarterDescription")}
           </p>
         </section>
       </div>
