@@ -7,5 +7,26 @@
     "button": "View School Projects →",
     "learnSmarter": "Learn Smarter",
     "learnSmarterDescription": "Krypton focuses on clarity and structure so students spend less time memorizing and more time understanding chemistry concepts."
-  }
+  },
+
+  "cards": [
+    {
+      "id": "4o",
+      "icon": "⚛️",
+      "title": "What is Krypton?",
+      "description": "Krypton is a structured educational platform designed to support the study of chemistry for elementary and secondary school students. The learning material on the platform is presented logically, which allows for step-by-step learning and convenient electronic conceptualization, instead of just mechanical memorization."
+    },
+    {
+      "id": "7o",
+      "icon": "🧪",
+      "title": "Why Krypton?",
+      "description": "The study of chemistry is often associated with difficulties for students. This approach promotes systematic and consistent acquisition of knowledge, increases students' interest in the subject, and ensures the discovery of chemical laws and their in-depth understanding. Studying chemistry through the use of diverse educational resources helps with the effective understanding of topics, the systematic acquisition of knowledge, and the development of students’ analytical skills."
+    },
+    {
+      "id": "2o",
+      "icon": "📚",
+      "title": "What You'll Find",
+      "description": "We give students the opportunity to explore the world of chemistry through interactive lessons and a wide range of learning experiences. Our mission is to make science simple, understandable, and accessible for everyone, while supporting the growth of students’ motivation and critical thinking skills."
+    }
+  ]
 }

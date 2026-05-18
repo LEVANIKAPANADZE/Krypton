@@ -6,13 +6,12 @@ import { useState } from "react";
 import en from "../../messages/en.json";
 import ka from "../../messages/ka.json";
 
-import Description from "../../description.json";
-
 export default function Page() {
   const [locale, setLocale] = useState<"en" | "ka">("en");
 
   const messages = locale === "en" ? en : ka;
   const home = messages.HomePage;
+  const cards = messages.cards;
 
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10 md:px-12 xl:px-20">
@@ -20,13 +19,14 @@ export default function Page() {
         <button
           onClick={() => setLocale(locale === "en" ? "ka" : "en")}
           className="
-            px-4 py-2
-            rounded-xl
-            bg-white/5 border border-white/10
-            text-gray-300 text-sm font-medium
-            hover:bg-cyan-400 hover:text-black hover:border-cyan-400
-            transition-all duration-300
-          "
+              px-3 py-1.5 text-xs font-semibold rounded-lg
+              md:px-4 md:py-2 md:text-sm md:rounded-xl
+              xl:px-5 xl:py-2.5 xl:text-base
+              bg-white/5 border border-white/10 text-gray-300
+              cursor-pointer select-none tracking-wide
+              hover:bg-cyan-400 hover:text-black hover:border-cyan-400
+              hover:shadow-[0_0_20px_rgba(34,211,238,0.4)]
+            "
         >
           {locale === "en" ? "ქართული" : "English"}
         </button>
@@ -68,7 +68,7 @@ export default function Page() {
         </section>
 
         <section className="grid md:grid-cols-3 gap-6 mt-20 w-full">
-          {Description.map((card, index) => (
+          {cards.map((card, index) => (
             <div
               key={index}
               className="
