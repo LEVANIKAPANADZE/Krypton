@@ -4,7 +4,6 @@ import Header from "../components/Header/page";
 import Footer from "../components/Footer/page";
 
 import { NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Krypton",
@@ -13,23 +12,22 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
   let messages;
+  const defaultLocale = "en";
 
   try {
-    messages = (await import(`../messages/${params.locale}.json`)).default;
+    messages = (await import(`../messages/${defaultLocale}.json`)).default;
   } catch (error) {
-    notFound();
+    messages = {};
   }
 
   return (
-    <html lang={params.locale}>
+    <html lang={defaultLocale}>
       <body className="min-h-screen flex flex-col">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={defaultLocale} messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

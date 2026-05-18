@@ -1,11 +1,6 @@
 import Link from "next/link";
-import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const locale = useLocale();
-  const router = useRouter();
-
   const navItems = [
     { icon: "/navIcons/icon-nav-home.svg", path: "/" },
     { icon: "/navIcons/icon-nav-movies.svg", path: "/resource" },
