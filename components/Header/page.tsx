@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -14,11 +12,6 @@ export default function Header() {
     { icon: "/navIcons/icon-nav-bookmark.svg", path: "/project" },
     { icon: "/navIcons/icon-nav-tv-series.svg", path: "/task" },
   ];
-
-  function toggleLanguage() {
-    const newLocale = locale === "en" ? "ka" : "en";
-    router.push(`/${newLocale}`);
-  }
 
   return (
     <header className="w-full max-w-4xl mx-auto flex justify-between md:rounded-xl items-center p-4 md:p-6 xl:p-8 xl:rounded-xl bg-gray-800 xl:mt-[20px]">
@@ -40,27 +33,11 @@ export default function Header() {
         ))}
       </div>
 
-      <div className="flex items-center gap-3">
-        <button
-          onClick={toggleLanguage}
-          className="
-            px-3 py-1 rounded-md
-            border border-cyan-500/40
-            text-cyan-400
-            hover:bg-cyan-500/10
-            transition
-            text-sm
-          "
-        >
-          {locale.toUpperCase()}
-        </button>
-
-        <img
-          src="/content.png"
-          alt="logo"
-          className="w-6 h-6 rounded-md md:w-8 md:h-8 xl:w-10 xl:h-10"
-        />
-      </div>
+      <img
+        src="/content.png"
+        alt="logo"
+        className="w-6 h-6 rounded-md md:w-8 md:h-8 xl:w-10 xl:h-10"
+      />
     </header>
   );
 }
