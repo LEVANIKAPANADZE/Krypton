@@ -28,7 +28,7 @@ export default function Header() {
         <Link href={"/"}>
           {" "}
           <img
-            src="/content.png"
+            src="/KryptonNewLogo.png"
             alt="logo"
             className="
           w-9 h-9
@@ -111,7 +111,7 @@ export default function Header() {
         <Link href={"/"}>
           {" "}
           <img
-            src="/content.png"
+            src="/KryptonNewLogo.png"
             alt="logo"
             className="
           w-9 h-9
