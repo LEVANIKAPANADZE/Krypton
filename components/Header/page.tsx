@@ -31,8 +31,8 @@ export default function Header() {
             src="/KryptonNewLogo.png"
             alt="logo"
             className="
-          w-9 h-9
-          sm:w-10 sm:h-10
+           w-13 h-13
+          sm:w-15 sm:h-15
           rounded-xl
 
           transition-all duration-300
@@ -76,8 +76,8 @@ export default function Header() {
                 alt="nav"
                 className="
                 w-5 h-5
-                sm:w-6 sm:h-6
-                md:w-7 md:h-7
+                sm:w-7 sm:h-7
+                md:w-9 md:h-9
 
                 brightness-75
                 transition-all duration-300
@@ -114,8 +114,8 @@ export default function Header() {
             src="/KryptonNewLogo.png"
             alt="logo"
             className="
-          w-9 h-9
-          sm:w-10 sm:h-10
+          w-13 h-13
+          sm:w-15 sm:h-15
           rounded-xl
 
           transition-all duration-300
