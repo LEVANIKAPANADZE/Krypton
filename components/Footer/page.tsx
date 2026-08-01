@@ -47,9 +47,6 @@ export default function page() {
         >
           Kapanadze Levani
         </a>
-        <span className="block md:inline-block hover:text-white cursor-pointer">
-          Nika Feradze
-        </span>
       </div>
     </footer>
   );
