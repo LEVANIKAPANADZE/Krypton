@@ -1,53 +1,116 @@
 import Link from "next/link";
 
-export default function page() {
+export default function Footer() {
   const navItems = [
-    { name: "HOME", path: "/" },
-    { name: "RESOURCES", path: "/resource" },
-    { name: "PROJECTS", path: "/project" },
-    { name: "TASKS", path: "/task" },
+    { name: "სახლი", path: "/" },
+    { name: "რესურსები", path: "/resource" },
+    { name: "პროექტები", path: "/project" },
+    { name: "დავალებები", path: "/task" },
   ];
 
   return (
-    <footer className="max-w-5xl mx-auto p-6 md:p-8 xl:p-10 mt-10 text-white text-center xl:text-left">
-      <hr className="border-gray-700 opacity-30 mb-6" />
+    <footer className="relative w-full overflow-hidden bg-[#050505] pt-16 pb-6 mt-20">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent" />
 
-      <h2 className="text-2xl md:text-3xl xl:text-4xl text-cyan-400 font-semibold mb-4">
-        კრიპტონი
-      </h2>
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 xl:left-10 xl:translate-x-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-[110px]" />
 
-      <nav className="flex flex-col md:flex-row xl:justify-start justify-center gap-6 xl:gap-10 mb-6">
-        {navItems.map((item, index) => (
-          <Link
-            href={item.path}
-            key={index}
-            className="text-gray-400 hover:text-white"
-          >
-            {item.name}
-          </Link>
-        ))}
-      </nav>
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 xl:px-20">
+        <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-12 xl:gap-20 mb-12">
+          <div className="w-full xl:max-w-2xl text-center xl:text-left">
+            <div className="flex items-center justify-center xl:justify-start gap-3 mb-6">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-5 w-5 text-cyan-400"
+                >
+                  <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+                  <ellipse
+                    cx="12"
+                    cy="12"
+                    rx="9.5"
+                    ry="3.6"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                  />
+                  <ellipse
+                    cx="12"
+                    cy="12"
+                    rx="9.5"
+                    ry="3.6"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                    transform="rotate(60 12 12)"
+                  />
+                  <ellipse
+                    cx="12"
+                    cy="12"
+                    rx="9.5"
+                    ry="3.6"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                    transform="rotate(120 12 12)"
+                  />
+                </svg>
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
+                KRYPTON
+              </h2>
+            </div>
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+              ჩვენ ვეხმარებით მოსწავლეებს, შეისწავლონ ქიმიის სამყარო
+              ინტერაქციული გაკვეთილების, მკაფიო ახსნა-განმარტებებისა და
+              საინტერესო სასწავლო აქტივობების მეშვეობით. ჩვენი მისიაა,
+              მეცნიერება ყველასთვის მარტივი, გასაგები და ხელმისაწვდომი გავხადოთ;
+              ამასთანავე, ხელი შევუწყოთ მოსწავლეებს თავდაჯერებულობის
+              გამომუშავებაში, კრიტიკული აზროვნების განვითარებასა და საგანთან
+              უფრო ღრმა კავშირის დამყარებაში. ჩვენი მიზანია, ქიმია რთული და
+              დამთრგუნველი საგნიდან ინტუიციურ, საინტერესო და ნამდვილად
+              სასიამოვნო გამოცდილებად ვაქციოთ.
+            </p>
+          </div>
 
-      <p className="text-gray-400 mb-6 leading-relaxed">
-        ჩვენ ვეხმარებით მოსწავლეებს, შეისწავლონ ქიმიის სამყარო ინტერაქციული
-        გაკვეთილების, მკაფიო ახსნა-განმარტებებისა და საინტერესო სასწავლო
-        აქტივობების მეშვეობით. ჩვენი მისიაა, მეცნიერება ყველასთვის მარტივი,
-        გასაგები და ხელმისაწვდომი გავხადოთ; ამასთანავე, ხელი შევუწყოთ
-        მოსწავლეებს თავდაჯერებულობის გამომუშავებაში, კრიტიკული აზროვნების
-        განვითარებასა და საგანთან უფრო ღრმა კავშირის დამყარებაში. ჩვენი მიზანია,
-        ქიმია რთული და დამთრგუნველი საგნიდან ინტუიციურ, საინტერესო და ნამდვილად
-        სასიამოვნო გამოცდილებად ვაქციოთ.
-      </p>
+          <div className="w-full xl:w-auto flex flex-col items-center xl:items-start text-center xl:text-left">
+            <h3 className="text-white text-lg font-semibold mb-5">
+              ნავიგაცია
+              <span className="mt-2 block h-0.5 w-10 bg-gradient-to-r from-cyan-400 to-transparent mx-auto xl:mx-0" />
+            </h3>
+            <nav className="flex flex-col gap-3">
+              {navItems.map((item) => (
+                <Link
+                  href={item.path}
+                  key={item.path}
+                  className="group inline-flex items-center gap-2 rounded-sm font-medium text-gray-400 outline-none transition-colors duration-300 hover:text-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
+                >
+                  <span className="h-1 w-1 -translate-x-1 rounded-full bg-cyan-400 opacity-0 transition-all duration-300 motion-reduce:transition-none group-hover:translate-x-0 group-hover:opacity-100" />
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
 
-      <div className="text-cyan-400">
-        <h3 className="mb-2 font-medium">DEVELOPER:</h3>
-        <a
-          href="https://my-contacts-hazel.vercel.app"
-          target="_blank"
-          className="block md:inline-block md:mr-4 hover:text-white"
-        >
-          Kapanadze Levani
-        </a>
+        <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-gray-500">
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} KRYPTON. ყველა უფლება დაცულია.
+          </p>
+
+          <div className="flex items-center gap-2 rounded-full border border-gray-800 bg-white/[0.03] px-4 py-1.5">
+            <span className="font-medium tracking-wide text-gray-500">
+              DEVELOPER:
+            </span>
+            <a
+              href="https://my-contacts-hazel.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-sm font-bold text-cyan-400 underline-offset-4 outline-none transition-all duration-300 hover:text-white hover:underline focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
+            >
+              Kapanadze Levani
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
