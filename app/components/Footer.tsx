@@ -40,7 +40,7 @@ export default function page() {
       </p>
 
       <div className="text-cyan-400">
-        <h3 className="mb-2 font-medium">DEVELOPERS:</h3>
+        <h3 className="mb-2 font-medium">DEVELOPER:</h3>
         <a
           href="https://my-contacts-hazel.vercel.app"
           target="_blank"
