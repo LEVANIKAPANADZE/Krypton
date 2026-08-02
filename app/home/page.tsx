@@ -153,7 +153,6 @@ export default function Page() {
           <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed relative z-10 text-lg">
             კრიპტონი ყურადღებას ამახვილებს სიცხადესა და სტრუქტურაზე, რათა
             მოსწავლეებმა ნაკლები დრო დახარჯონ დაზეპირებაზე და მეტი — გაგებაზე.
-            ✨
           </p>
         </div>
       </section>
