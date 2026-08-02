@@ -22,7 +22,6 @@ Instead of overwhelming students with memorization, Krypton focuses on clarity a
 
 # ✨ Features
 
-- 🌐 English & Georgian language support
 - ⚛️ Structured chemistry lessons
 - 📚 Organized educational resources
 - 🧪 Interactive and clean UI
