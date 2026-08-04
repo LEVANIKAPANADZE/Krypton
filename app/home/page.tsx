@@ -46,7 +46,7 @@ export default function Page() {
         <div className="flex-1 space-y-6 flex flex-col items-center md:items-start">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/30 text-cyan-400 text-sm font-medium tracking-wide shadow-[0_0_15px_rgba(34,211,238,0.1)]">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            ქიმიის სასწავლო პლატფორმა 🧪
+            ქიმიის სასწავლო პლატფორმა
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
@@ -58,7 +58,7 @@ export default function Page() {
 
           <p className="text-gray-400 max-w-xl text-lg md:text-xl leading-relaxed">
             ისწავლე ქიმია მარტივი სტრუქტურირებული მასალით, რომელიც შექმნილია
-            მოსწავლეებისთვის და მორგებულია შენს საჭიროებებზე. ⚛️
+            მოსწავლეებისთვის და მორგებულია შენს საჭიროებებზე.
           </p>
 
           <div className="pt-2">
@@ -75,7 +75,7 @@ export default function Page() {
                 transition-all duration-300 ease-out
               "
             >
-              დაიწყე სწავლა 🚀
+              დაიწყე სწავლა
             </Link>
           </div>
         </div>
