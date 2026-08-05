@@ -4,6 +4,13 @@ import clientPromise from "@/lib/mongodb";
 
 type Type = "resource" | "task" | "project";
 
+// Added this small map to translate the dynamic title properly
+const titleMap: Record<Type, string> = {
+  resource: "რესურსები",
+  task: "დავალებები",
+  project: "პროექტები",
+};
+
 export default async function Page({
   params,
 }: {
@@ -37,10 +44,10 @@ export default async function Page({
       <div className="max-w-[1400px] mx-auto">
         <header className="mb-10 border-l-4 border-cyan-500 pl-5">
           <h1 className="text-3xl md:text-5xl font-bold capitalize tracking-tighter">
-            {type}s
+            {titleMap[type]}
           </h1>
           <p className="text-zinc-500 text-sm mt-2 font-medium">
-            {sanitizedData.length} entries active in database
+            მონაცემთა ბაზაში {sanitizedData.length} აქტიური ჩანაწერია
           </p>
         </header>
 
