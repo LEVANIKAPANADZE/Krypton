@@ -167,7 +167,7 @@ export default function Page() {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]"></div>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-5 relative z-10">
-            ისწავლე უფრო <span className="text-cyan-400">ჭკვიანურად</span> ✨
+            ისწავლე უფრო <span className="text-cyan-400">ჭკვიანურად</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed relative z-10 text-lg">
             კრიპტონი ყურადღებას ამახვილებს სიცხადესა და სტრუქტურაზე, რათა

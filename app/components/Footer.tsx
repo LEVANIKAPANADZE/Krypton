@@ -10,13 +10,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full overflow-hidden bg-[#050505] pt-16 pb-6 mt-20">
+    <footer className="relative w-full overflow-hidden bg-[#050505] pt-10 pb-6 mt-10 md:pt-16 md:mt-20">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent" />
 
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 xl:left-10 xl:translate-x-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-[110px]" />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 xl:px-20">
-        <div className="flex flex-col xl:flex-row justify-between items-start gap-12 xl:gap-20 mb-12">
+        <div className="flex flex-col xl:flex-row justify-between items-start gap-8 md:gap-12 xl:gap-20 mb-8 md:mb-12">
           <div className="w-full xl:max-w-2xl text-left">
             <div className="flex items-center justify-start gap-3 mb-6">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
@@ -27,7 +27,7 @@ export default function Footer() {
                   height={20}
                 />
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
                 KRYPTON
               </h2>
             </div>
@@ -73,7 +73,7 @@ export default function Footer() {
             © {new Date().getFullYear()} KRYPTON. ყველა უფლება დაცულია.
           </p>
 
-          <div className="flex items-center justify-center md:justify-start gap-2 rounded-full border border-gray-800 bg-white/[0.03] px-4 py-1.5 w-full md:w-auto">
+          <div className="flex items-center justify-start gap-2 rounded-full border border-gray-800 bg-white/[0.03] px-4 py-1.5 w-fit md:w-auto md:justify-start">
             <span className="font-medium tracking-wide text-gray-500">
               DEVELOPER:
             </span>

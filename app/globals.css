@@ -6,8 +6,8 @@ body {
   font-feature-settings:
     "liga" 1,
     "calt" 1;
-  background-image: radial-gradient(#1a1a1a 1.5px, transparent 1.5px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(#111111 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 ::selection {
