@@ -38,7 +38,7 @@ export default function Filter({ data, type }: FilterProps) {
       <div className="flex flex-col md:flex-row md:items-center gap-8 xl:gap-16 xl:scale-110 origin-left mb-10 transition-transform">
         <div className="flex flex-col gap-3">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 ml-1">
-            Languages
+            ენები
           </span>
           <div className="flex flex-wrap gap-2">
             {languages.map((lang) => (
@@ -52,7 +52,13 @@ export default function Filter({ data, type }: FilterProps) {
                     : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-600"
                 }`}
               >
-                {lang}
+                {lang === "all"
+                  ? "ყველა"
+                  : lang === "English"
+                    ? "ინგლისური"
+                    : lang === "Georgian"
+                      ? "ქართული"
+                      : lang}
               </button>
             ))}
           </div>
@@ -62,7 +68,7 @@ export default function Filter({ data, type }: FilterProps) {
 
         <div className="flex flex-col gap-3">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 ml-1">
-            Grades
+            კლასები
           </span>
           <div className="flex flex-wrap gap-2">
             {grades.map((g) => (
@@ -76,7 +82,7 @@ export default function Filter({ data, type }: FilterProps) {
                     : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-600"
                 }`}
               >
-                {g === "all" ? "All Grades" : `Grade ${g}`}
+                {g === "all" ? "ყველა კლასი" : `კლასი ${g}`}
               </button>
             ))}
           </div>
@@ -104,7 +110,7 @@ export default function Filter({ data, type }: FilterProps) {
                 </div>
 
                 <span className="px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-cyan-400 text-[10px] font-black uppercase tracking-widest">
-                  Grade {item.grade}
+                  კლასი {item.grade}
                 </span>
               </div>
 
@@ -121,7 +127,7 @@ export default function Filter({ data, type }: FilterProps) {
                 ID: {item.id.slice(0, 8)}
               </span>
               <span className="text-sm font-bold text-white group-hover:text-cyan-400 flex items-center gap-2 transition-all">
-                Launch{" "}
+                გახსნა{" "}
                 <span className="group-hover:translate-x-1 transition-transform">
                   →
                 </span>
