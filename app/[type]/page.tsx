@@ -45,7 +45,7 @@ export default async function Page({
           <h1 className="text-3xl md:text-5xl font-bold capitalize tracking-tighter">
             {titleMap[type]}
           </h1>
-          <p className="text-zinc-500 text-sm mt-2 font-medium">
+          <p className="text-zinc-500 text-sm mt-3 xl:mt-5 font-medium">
             მონაცემთა ბაზაში {sanitizedData.length} აქტიური ჩანაწერია
           </p>
         </header>
