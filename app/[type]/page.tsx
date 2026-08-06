@@ -4,7 +4,6 @@ import clientPromise from "@/lib/mongodb";
 
 type Type = "resource" | "task" | "project";
 
-// Added this small map to translate the dynamic title properly
 const titleMap: Record<Type, string> = {
   resource: "რესურსები",
   task: "დავალებები",
