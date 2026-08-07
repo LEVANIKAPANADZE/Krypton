@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Filter from "../components/Filter";
+import Filter from "../../components/Filter";
 import clientPromise from "@/lib/mongodb";
 
 type Type = "resource" | "task" | "project";
