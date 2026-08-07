@@ -50,9 +50,9 @@ export default function Page() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
-            <span className="text-white">კრიპ</span>
+            <span className="text-white">KRYP</span>
             <span className="text-cyan-400 drop-shadow-[0_0_25px_rgba(34,211,238,0.4)]">
-              ტონი
+              TON
             </span>
           </h1>
 
