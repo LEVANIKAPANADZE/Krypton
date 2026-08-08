@@ -16,36 +16,22 @@ export default function Footer() {
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 xl:left-10 xl:translate-x-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-[110px]" />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 xl:px-20">
-        <div className="flex flex-col xl:flex-row justify-between items-start gap-8 md:gap-12 xl:gap-20 mb-8 md:mb-12">
-          <div className="w-full xl:max-w-2xl text-left">
-            <div className="flex items-center justify-start gap-3 mb-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
-                <Image
-                  src="/KryptonNewLogo.png"
-                  alt="Krypton logo"
-                  width={20}
-                  height={20}
-                />
-              </span>
-              <h2 className="text-2xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
-                KRYPTON
-              </h2>
-            </div>
-
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-              ჩვენ ვეხმარებით მოსწავლეებს, შეისწავლონ ქიმიის სამყარო
-              ინტერაქციული გაკვეთილების, მკაფიო ახსნა-მარტებებისა და საინტერესო
-              სასწავლო აქტივობების მეშვეობით. ჩვენი მისიაა, მეცნიერება
-              ყველასთვის მარტივი, გასაგები და ხელმისაწვდომი გავხადოთ;
-              ამასთანავე, ხელი შევუწყოთ მოსწავლეებს თავდაჯერებულობის
-              გამომუშავებაში, კრიტიკული აზროვნების განვითარებასა და საგანთან
-              უფრო ღრმა კავშირის დამყარებაში. ჩვენი მიზანია, ქიმია რთული და
-              დამთრგუნველი საგნიდან ინტუიციურ, საინტერესო და ნამდვილად
-              სასიამოვნო გამოცდილებად ვაქციოთ.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-y-8 md:gap-y-6 gap-x-8 md:gap-x-12 xl:gap-x-20 mb-8 md:mb-12">
+          <div className="order-1 md:order-none md:col-start-1 md:row-start-1 flex items-center justify-start gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
+              <Image
+                src="/KryptonNewLogo.png"
+                alt="Krypton logo"
+                width={20}
+                height={20}
+              />
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
+              KRYPTON
+            </h2>
           </div>
 
-          <div className="w-full xl:w-auto flex flex-col items-start text-left">
+          <div className="order-2 md:order-none md:col-start-2 md:row-start-1 md:row-span-2 w-full md:w-auto flex flex-col items-start text-left md:mt-[50px]">
             <h3 className="text-white text-lg font-semibold mb-5">
               ნავიგაცია
               <span className="mt-2 block h-0.5 w-10 bg-gradient-to-r from-cyan-400 to-transparent" />
@@ -63,6 +49,20 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
+          </div>
+
+          <div className="order-3 md:order-none md:col-start-1 md:row-start-2 w-full md:max-w-2xl text-left">
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+              ჩვენ ვეხმარებით მოსწავლეებს, შეისწავლონ ქიმიის სამყარო
+              ინტერაქციული გაკვეთილების, მკაფიო ახსნა-მარტებებისა და საინტერესო
+              სასწავლო აქტივობების მეშვეობით. ჩვენი მისიაა, მეცნიერება
+              ყველასთვის მარტივი, გასაგები და ხელმისაწვდომი გავხადოთ;
+              ამასთანავე, ხელი შევუწყოთ მოსწავლეებს თავდაჯერებულობის
+              გამომუშავებაში, კრიტიკული აზროვნების განვითარებასა და საგანთან
+              უფრო ღრმა კავშირის დამყარებაში. ჩვენი მიზანია, ქიმია რთული და
+              დამთრგუნველი საგნიდან ინტუიციურ, საინტერესო და ნამდვილად
+              სასიამოვნო გამოცდილებად ვაქციოთ.
+            </p>
           </div>
         </div>
 
