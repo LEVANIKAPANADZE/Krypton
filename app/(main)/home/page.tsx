@@ -103,7 +103,7 @@ export default function Page() {
             >
               <div>
                 <h2 className="text-2xl font-bold mb-4 text-white">
-                  {block.title} 💡
+                  {block.title}
                 </h2>
                 <p className="text-gray-400 leading-relaxed text-base md:text-lg">
                   {block.description}
