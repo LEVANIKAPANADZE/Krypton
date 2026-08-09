@@ -27,7 +27,21 @@ export default function page() {
     },
   ];
 
-  async function handleSubmission() {}
+  async function handleSubmission(event: React.FormEvent) {
+    event.preventDefault();
+
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  }
 
   return (
     <div>
@@ -38,7 +52,7 @@ export default function page() {
       />
 
       <div>
-        <form>
+        <form onSubmit={handleSubmission}>
           {inputs.map((item: any) => (
             <div key={item.message}>
               <input
