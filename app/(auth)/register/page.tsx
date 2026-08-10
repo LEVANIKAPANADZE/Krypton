@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function page() {
   const [formData, setFormData] = useState<any>({
@@ -9,77 +10,82 @@ export default function page() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   const inputs: any = [
     {
       placeholder: "Username",
       inputName: "name",
-      message: "Username cannot be empty",
     },
     {
       placeholder: "Email Address",
       inputName: "email",
-      message: "Looks like this is not an email",
     },
     {
       placeholder: "Password",
       inputName: "password",
-      message: "Password cannot be empty",
     },
   ];
 
   async function handleSubmission(event: React.FormEvent) {
     event.preventDefault();
 
-    const response = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    setError("");
 
-    const data = await response.json();
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    console.log(data);
+      const data = await response.json();
+
+      console.log(data.message);
+
+      if (!response.ok) {
+        setError(data.message);
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    }
   }
 
   return (
     <div>
-      <img
-        src="/KryptonNewLogo.png"
-        alt="Krypton Logo"
-        className="h-[50px] w-[50px]"
-      />
+      <form onSubmit={handleSubmission}>
+        {inputs.map((item: any) => (
+          <div key={item.placeholder}>
+            <input
+              type="text"
+              name={item.inputName}
+              placeholder={item.placeholder}
+              value={formData[item.inputName]}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  [item.inputName]: e.target.value,
+                })
+              }
+            />
+          </div>
+        ))}
+
+        {error ? <span>{error}</span> : null}
+
+        <button type="submit">Register Now</button>
+      </form>
 
       <div>
-        <form onSubmit={handleSubmission}>
-          {inputs.map((item: any) => (
-            <div key={item.message}>
-              <input
-                type="text"
-                name={item.inputName}
-                placeholder={item.placeholder}
-                value={formData[item.inputName]}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [item.inputName]: e.target.value,
-                  })
-                }
-              />
-            </div>
-          ))}
-
-          <button type="submit">Register Now</button>
-        </form>
-
-        <button>Continou with GOOGLE</button>
-        <button>Continou as a GUEST</button>
-
-        <span>
-          Already have an account? <span>Log in</span>
-        </span>
+        <img src="/Guest.png" alt="Guest logo" className="h-[50px] w-[50px]" />
+        <button>Continue as a GUEST</button>
       </div>
+
+      <span>
+        Already have an account? <Link href={"/login"}>Log In</Link>
+      </span>
     </div>
   );
 }
