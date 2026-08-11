@@ -27,10 +27,20 @@ export async function POST(request: Request) {
     });
 
     if (!result.success) {
-      return NextResponse.json(
-        { message: result.error.issues[0].message },
-        { status: 400 },
+      const errors = result.error.issues.reduce(
+        (acc, issue) => {
+          const field = issue.path[0];
+
+          if (typeof field === "string" && !acc[field]) {
+            acc[field] = issue.message;
+          }
+
+          return acc;
+        },
+        {} as Record<string, string>,
       );
+
+      return NextResponse.json({ errors }, { status: 400 });
     }
 
     const cleanName = result.data.name;
@@ -45,7 +55,11 @@ export async function POST(request: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already exists" },
+        {
+          errors: {
+            email: "User already exists",
+          },
+        },
         { status: 409 },
       );
     }
@@ -63,7 +77,7 @@ export async function POST(request: Request) {
       { message: "User created successfully" },
       { status: 201 },
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Error appeared while registering..." },
       { status: 500 },
