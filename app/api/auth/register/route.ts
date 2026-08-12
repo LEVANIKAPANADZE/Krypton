@@ -7,13 +7,13 @@ const registerSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Name must be at least 2 characters long!")
-    .max(50, "Name must be 50 characters or fewer!"),
-  email: z.email("Please enter a valid email address!").trim().toLowerCase(),
+    .min(2, "სახელი უნდა შეიცავდეს სულ მცირე 2 სიმბოლოს!")
+    .max(50, "სახელი არ უნდა აღემატებოდეს 50 სიმბოლოს!"),
+  email: z.email("გთხოვთ, მიუთითოთ ვალიდური ელ. ფოსტა!").trim().toLowerCase(),
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters long!")
-    .max(20, "Password must be 20 characters or fewer!"),
+    .min(8, "პაროლი უნდა შეიცავდეს სულ მცირე 8 სიმბოლოს!")
+    .max(20, "პაროლი არ უნდა აღემატებოდეს 20 სიმბოლოს!"),
 });
 
 export async function POST(request: Request) {
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           errors: {
-            email: "User already exists",
+            email: "მომხმარებელი ამ ელ. ფოსტით უკვე არსებობს",
           },
         },
         { status: 409 },
@@ -74,12 +74,12 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: "User created successfully" },
+      { message: "მომხმარებელი წარმატებით დარეგისტრირდა" },
       { status: 201 },
     );
   } catch {
     return NextResponse.json(
-      { message: "Error appeared while registering..." },
+      { message: "რეგისტრაციისას დაფიქსირდა შეცდომა..." },
       { status: 500 },
     );
   }
