@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 export default function Page() {
   const [formData, setFormData] = useState<any>({
@@ -46,31 +47,31 @@ export default function Page() {
       password: "",
     });
 
-    try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const { data, error } = await authClient.signUp.email({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    });
 
-      const data = await response.json();
-
-      if (!response.ok) {
+    if (error) {
+      if (error.code === "USER_ALREADY_EXISTS") {
         setErrors({
-          name: data.errors?.name || "",
-          email: data.errors?.email || "",
-          password: data.errors?.password || "",
+          name: "",
+          email: "მომხმარებელი ამ ელ. ფოსტით უკვე არსებობს",
+          password: "",
+        });
+      } else {
+        setErrors({
+          name: "",
+          email: error.message || "",
+          password: "",
         });
       }
-    } catch {
-      setErrors({
-        name: "",
-        email: "",
-        password: "დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ თავიდან.",
-      });
+
+      return;
     }
+
+    console.log("Registered successfully:", data);
   }
 
   return (
