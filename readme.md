@@ -42,17 +42,6 @@ Instead of overwhelming students with memorization, Krypton focuses on clarity a
 
 ---
 
-# 🌍 Localization
-
-Krypton currently supports:
-
-- English
-- Georgian
-
-Important pages and educational content are translated manually to ensure high-quality chemistry terminology and accurate explanations.
-
----
-
 # 🎯 Project Goal
 
 The goal of Krypton is to transform chemistry from a difficult and overwhelming subject into an understandable and intellectually engaging learning experience.
