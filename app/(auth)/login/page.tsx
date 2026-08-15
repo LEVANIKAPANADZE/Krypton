@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { getAuthErrorMessage } from "@/lib/auth-errors";
 
 export default function Page() {
   const router = useRouter();
@@ -140,9 +141,12 @@ export default function Page() {
               className="h-5 w-5 opacity-70 transition-opacity group-hover:opacity-100"
             />
 
-            <span className="text-sm md:text-base font-medium text-gray-300 transition-colors group-hover:text-white">
+            <Link
+              href="/"
+              className="text-sm md:text-base font-medium text-gray-300 transition-colors group-hover:text-white"
+            >
               სტუმრის სტატუსით გაგრძელება
-            </span>
+            </Link>
           </button>
         </div>
 
