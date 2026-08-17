@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { registerSchema } from "@/lib/auth-validation";
+import { getAuthErrorMessage } from "@/lib/auth-errors";
 
 export default function Page() {
   const [formData, setFormData] = useState<any>({
@@ -47,26 +49,47 @@ export default function Page() {
       password: "",
     });
 
+    const result = registerSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = {
+        name: "",
+        email: "",
+        password: "",
+      };
+
+      for (const issue of result.error.issues) {
+        const field = issue.path[0];
+
+        if (field === "name" && !fieldErrors.name) {
+          fieldErrors.name = issue.message;
+        }
+
+        if (field === "email" && !fieldErrors.email) {
+          fieldErrors.email = issue.message;
+        }
+
+        if (field === "password" && !fieldErrors.password) {
+          fieldErrors.password = issue.message;
+        }
+      }
+
+      setErrors(fieldErrors);
+      return;
+    }
+
     const { data, error } = await authClient.signUp.email({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
+      name: result.data.name,
+      email: result.data.email,
+      password: result.data.password,
     });
 
     if (error) {
-      if (error.code === "USER_ALREADY_EXISTS") {
-        setErrors({
-          name: "",
-          email: "მომხმარებელი ამ ელ. ფოსტით უკვე არსებობს",
-          password: "",
-        });
-      } else {
-        setErrors({
-          name: "",
-          email: error.message || "",
-          password: "",
-        });
-      }
+      setErrors({
+        name: "",
+        email: getAuthErrorMessage(error.code, error.message),
+        password: "",
+      });
 
       return;
     }

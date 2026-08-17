@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { loginSchema } from "@/lib/auth-validation";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
 
 export default function Page() {
@@ -42,14 +43,38 @@ export default function Page() {
       password: "",
     });
 
+    const result = loginSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = {
+        email: "",
+        password: "",
+      };
+
+      for (const issue of result.error.issues) {
+        const field = issue.path[0];
+
+        if (field === "email" && !fieldErrors.email) {
+          fieldErrors.email = issue.message;
+        }
+
+        if (field === "password" && !fieldErrors.password) {
+          fieldErrors.password = issue.message;
+        }
+      }
+
+      setErrors(fieldErrors);
+      return;
+    }
+
     const { data, error } = await authClient.signIn.email({
-      email: formData.email,
-      password: formData.password,
+      email: result.data.email,
+      password: result.data.password,
     });
 
     if (error) {
       setErrors({
-        email: error.message || "",
+        email: getAuthErrorMessage(error.code, error.message),
         password: "",
       });
 
