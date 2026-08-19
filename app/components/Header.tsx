@@ -1,131 +1,76 @@
 import Link from "next/link";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import HeaderNav from "./HeaderNav";
+import HeaderMobileMenu from "./HeaderMobileMenu";
 
-export default function Header() {
-  const navItems = [
-    { icon: "/navIcons/icon-nav-home.svg", path: "/" },
-    { icon: "/navIcons/icon-nav-movies.svg", path: "/resource" },
-    { icon: "/navIcons/icon-nav-bookmark.svg", path: "/project" },
-    { icon: "/navIcons/icon-nav-tv-series.svg", path: "/task" },
-  ];
+const navItems = [
+  { label: "მთავარი", path: "/" },
+  { label: "რესურსები", path: "/resource" },
+  { label: "პროექტები", path: "/project" },
+  { label: "დავალებები", path: "/task" },
+];
+
+export default async function Header() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const isAuthenticated = Boolean(session?.user);
 
   return (
-    <header
-      className="
-      w-[95%] max-w-6xl mx-auto mt-3 md:mt-5
-      bg-black/95 border border-cyan-400/40
-      shadow-[0_0_25px_rgba(34,211,238,0.25)]
-      backdrop-blur-xl
-      rounded-2xl
+    <header className="sticky top-0 z-40 w-full bg-[#050505]/90 backdrop-blur-xl border-b border-cyan-500/10 shadow-[0_1px_0_0_rgba(34,211,238,0.05)] px-4 py-4 md:px-10 md:py-6 xl:px-16 flex items-center justify-between">
+      <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-cyan-500/[0.06] blur-3xl" />
 
-      flex items-center justify-between
+      <Link href="/" className="relative flex items-center gap-3 flex-shrink-0">
+        <img
+          src="/KryptonNewLogo.png"
+          alt="Krypton logo"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-lg"
+        />
+        <span className="text-white font-bold tracking-wide text-lg md:text-xl">
+          KRYPTON
+        </span>
+      </Link>
 
-      px-3 py-3
-      sm:px-5 sm:py-4
-      md:px-8 md:py-5
-      "
-    >
-      <div className="group cursor-pointer flex-shrink-0">
-        <Link href={"/"}>
-          {" "}
-          <img
-            src="/KryptonNewLogo.png"
-            alt="logo"
-            className="
-           w-13 h-13
-          sm:w-15 sm:h-15
-          rounded-xl
+      <HeaderNav navItems={navItems} />
 
-          transition-all duration-300
-          group-hover:scale-110
-          group-hover:rotate-6
-          group-hover:shadow-[0_0_20px_cyan]
-          "
-          />
-        </Link>
-      </div>
-
-      <nav
-        className="
-        flex items-center justify-center
-        gap-1 sm:gap-3 md:gap-5
-        "
-      >
-        {navItems.map((item, index) => (
-          <Link href={item.path} key={index}>
-            <div
-              className="
-              group relative
-
-              p-2
-              sm:p-3
-
-              rounded-xl
-              border border-transparent
-
-              hover:border-cyan-400/60
-              hover:bg-cyan-400/10
-
-              transition-all duration-300
-              hover:shadow-[0_0_20px_rgba(34,211,238,0.45)]
-
-              active:scale-95
-              "
+      <div className="relative hidden md:flex items-center gap-4">
+        {isAuthenticated ? (
+          <>
+            <Link
+              href="/saved"
+              className="px-5 py-2.5 text-base font-medium text-gray-400 rounded-lg transition-colors duration-200 hover:text-cyan-400 hover:bg-white/[0.03]"
             >
-              <img
-                src={item.icon}
-                alt="nav"
-                className="
-                w-5 h-5
-                sm:w-7 sm:h-7
-                md:w-9 md:h-9
-
-                brightness-75
-                transition-all duration-300
-
-                group-hover:brightness-200
-                group-hover:scale-110
-                "
-              />
-
-              <div
-                className="
-                absolute -bottom-1 left-1/2
-                -translate-x-1/2
-
-                w-1 h-1 rounded-full
-                bg-cyan-400
-
-                opacity-0
-                group-hover:opacity-100
-
-                transition-all duration-300
-                shadow-[0_0_10px_cyan]
-                "
-              />
-            </div>
-          </Link>
-        ))}
-      </nav>
-
-      <div className="group cursor-pointer flex-shrink-0">
-        <Link href={"/"}>
-          {" "}
-          <img
-            src="/KryptonNewLogo.png"
-            alt="logo"
-            className="
-          w-13 h-13
-          sm:w-15 sm:h-15
-          rounded-xl
-
-          transition-all duration-300
-          group-hover:scale-110
-          group-hover:-rotate-6
-          group-hover:shadow-[0_0_20px_cyan]
-          "
-          />
-        </Link>
+              შენახულები
+            </Link>
+            <Link
+              href="/profile"
+              aria-label="პროფილი"
+              className="flex items-center justify-center w-12 h-12 rounded-lg border border-gray-800 bg-white/[0.02] transition-colors duration-200 hover:border-cyan-500/50 hover:bg-cyan-500/[0.05]"
+            >
+              <img src="/user-icon.svg" alt="" className="w-6 h-6 opacity-80" />
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href="/login"
+              className="px-5 py-2.5 text-base font-medium text-gray-400 rounded-lg transition-colors duration-200 hover:text-cyan-400 hover:bg-white/[0.03]"
+            >
+              შესვლა
+            </Link>
+            <Link
+              href="/register"
+              className="px-6 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 shadow-[0_0_24px_-4px_rgba(6,182,212,0.55)] text-black text-base font-semibold transition-all duration-200"
+            >
+              რეგისტრაცია
+            </Link>
+          </>
+        )}
       </div>
+
+      <HeaderMobileMenu navItems={navItems} isAuthenticated={isAuthenticated} />
     </header>
   );
 }
