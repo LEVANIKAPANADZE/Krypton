@@ -13,4 +13,15 @@ export const auth = betterAuth({
     minPasswordLength: 8,
     maxPasswordLength: 20,
   },
+
+  user: {
+    additionalFields: {
+      saved: {
+        type: "string[]",
+        required: false,
+        defaultValue: [],
+        input: false,
+      },
+    },
+  },
 });
