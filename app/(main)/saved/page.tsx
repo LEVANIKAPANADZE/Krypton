@@ -21,11 +21,13 @@ export default async function Page() {
           <p className="text-zinc-400">თქვენი შენახული მასალები ერთ ადგილას</p>
         </header>
 
-        <input
-          type="text"
-          placeholder="მასალების ძებნა..."
-          className="bg-zinc-800 text-zinc-400 placeholder:text-zinc-500 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-        />
+        <div className="mt-6">
+          <input
+            type="search"
+            placeholder="მასალის ძებნა..."
+            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white outline-none transition focus:border-cyan-500"
+          />
+        </div>
 
         {savedItems.length === 0 ? (
           <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 text-center">
