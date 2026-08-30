@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import SaveButton from "../components/saveButton";
+
 interface FilterItem {
   id: string;
   type: string;
@@ -16,9 +18,10 @@ interface FilterItem {
 interface FilterProps {
   data: FilterItem[];
   type: string;
+  savedIds?: string[];
 }
 
-export default function Filter({ data, type }: FilterProps) {
+export default function Filter({ data, type, savedIds = [] }: FilterProps) {
   const [language, setLanguage] = useState<string>("all");
   const [grade, setGrade] = useState<string>("all");
 
@@ -40,6 +43,7 @@ export default function Filter({ data, type }: FilterProps) {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 ml-1">
             ენები
           </span>
+
           <div className="flex flex-wrap gap-2">
             {languages.map((lang) => (
               <button
@@ -70,6 +74,7 @@ export default function Filter({ data, type }: FilterProps) {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 ml-1">
             კლასები
           </span>
+
           <div className="flex flex-wrap gap-2">
             {grades.map((g) => (
               <button
@@ -106,17 +111,33 @@ export default function Filter({ data, type }: FilterProps) {
                     alt=""
                     className="w-12 h-12 relative z-10"
                   />
+
                   <div className="absolute inset bg-cyan-500 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
                 </div>
 
-                <span className="px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-cyan-400 text-[10px] font-black uppercase tracking-widest">
-                  კლასი {item.grade}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-cyan-400 text-[10px] font-black uppercase tracking-widest">
+                    კლასი {item.grade}
+                  </span>
+
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    <SaveButton
+                      resourceId={item.id}
+                      initialSaved={savedIds.includes(item.id)}
+                    />
+                  </div>
+                </div>
               </div>
 
               <h3 className="text-xl font-bold group-hover:text-cyan-400 transition-colors mb-2">
                 {item.title}
               </h3>
+
               <p className="text-zinc-500 text-sm leading-relaxed line-clamp-3">
                 {item.description}
               </p>
@@ -126,6 +147,7 @@ export default function Filter({ data, type }: FilterProps) {
               <span className="text-[10px] text-zinc-700 font-bold uppercase tracking-tighter">
                 ID: {item.id.slice(0, 8)}
               </span>
+
               <span className="text-sm font-bold text-white group-hover:text-cyan-400 flex items-center gap-2 transition-all">
                 გახსნა{" "}
                 <span className="group-hover:translate-x-1 transition-transform">
