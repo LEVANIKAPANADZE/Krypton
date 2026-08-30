@@ -7,45 +7,27 @@ import { auth } from "@/lib/auth";
 import clientPromise from "@/lib/mongodb";
 
 type User = {
-  _id?: ObjectId;
+  _id?: ObjectId | string;
   id?: string;
   saved?: string[];
 };
 
-async function getSingleUserDocument(sessionUserId: string) {
+async function findUserBySessionId(sessionUserId: string) {
   const client = await clientPromise;
   const db = client.db("data");
   const users = db.collection<User>("user");
-
   const objectId = ObjectId.isValid(sessionUserId)
     ? new ObjectId(sessionUserId)
     : null;
-  const realUser = objectId ? await users.findOne({ _id: objectId }) : null;
-  const legacyUser = realUser
-    ? null
-    : await users.findOne({ id: sessionUserId });
 
-  if (realUser && legacyUser) {
-    const mergedSaved = [
-      ...new Set([...(realUser.saved ?? []), ...(legacyUser.saved ?? [])]),
-    ];
-
-    await users.updateOne(
-      { _id: realUser._id },
-      {
-        $set: { saved: mergedSaved },
-      },
-    );
-
-    await users.deleteOne({ _id: legacyUser._id });
-
-    return {
-      ...realUser,
-      saved: mergedSaved,
-    };
-  }
-
-  return realUser ?? legacyUser ?? null;
+  return users.findOne(
+    {
+      $or: [{ _id: objectId ?? sessionUserId }, { id: sessionUserId }],
+    },
+    {
+      projection: { _id: 1, id: 1, saved: 1 },
+    },
+  );
 }
 
 export async function getSavedIdsForCurrentUser() {
@@ -57,16 +39,24 @@ export async function getSavedIdsForCurrentUser() {
     return [];
   }
 
-  const client = await clientPromise;
-  const db = client.db("data");
-  const users = db.collection<User>("user");
-  const user = await getSingleUserDocument(session.user.id);
+  const user = await findUserBySessionId(session.user.id);
+  return user?.saved ?? [];
+}
 
-  if (!user) {
+export async function getSavedItemsForCurrentUser() {
+  const savedIds = await getSavedIdsForCurrentUser();
+
+  if (savedIds.length === 0) {
     return [];
   }
 
-  return Array.isArray(user.saved) ? user.saved : [];
+  const client = await clientPromise;
+  const db = client.db("data");
+
+  return db
+    .collection("info")
+    .find({ id: { $in: savedIds } })
+    .toArray();
 }
 
 export async function toggleSaved(resourceId: string) {
@@ -85,31 +75,29 @@ export async function toggleSaved(resourceId: string) {
   const client = await clientPromise;
   const db = client.db("data");
   const users = db.collection<User>("user");
-  const user = await getSingleUserDocument(session.user.id);
 
-  const saved = Array.isArray(user?.saved) ? user.saved : [];
+  const user = await findUserBySessionId(session.user.id);
+  const saved = user?.saved ?? [];
   const isSaved = saved.includes(resourceId);
   const nextSaved = isSaved
     ? saved.filter((id) => id !== resourceId)
     : [...new Set([...saved, resourceId])];
 
-  const objectId = ObjectId.isValid(session.user.id)
+  const updateQuery = user?._id ? { _id: user._id } : { id: session.user.id };
+  const normalizedId = ObjectId.isValid(session.user.id)
     ? new ObjectId(session.user.id)
-    : null;
+    : undefined;
 
-  if (objectId) {
-    await users.updateOne(
-      { _id: objectId },
-      { $set: { saved: nextSaved } },
-      { upsert: true },
-    );
-  } else {
-    await users.updateOne(
-      { id: session.user.id },
-      { $set: { saved: nextSaved } },
-      { upsert: true },
-    );
-  }
+  await users.updateOne(
+    updateQuery,
+    {
+      $set: {
+        saved: nextSaved,
+        ...(normalizedId ? {} : { id: session.user.id }),
+      },
+    },
+    { upsert: true },
+  );
 
   revalidatePath("/saved");
   revalidatePath("/resource");
