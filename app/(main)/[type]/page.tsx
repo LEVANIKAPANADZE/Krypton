@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Filter from "../../components/Filter";
 import clientPromise from "@/lib/mongodb";
+import { getSavedIdsForCurrentUser } from "@/lib/actions/saved";
 
 type Type = "resource" | "task" | "project";
 
@@ -38,6 +39,8 @@ export default async function Page({
       _id: item._id.toString(),
     }));
 
+  const savedIds = await getSavedIdsForCurrentUser();
+
   return (
     <main className="min-h-screen bg-black text-white p-6 md:p-12 antialiased">
       <div className="max-w-[1400px] mx-auto">
@@ -50,7 +53,7 @@ export default async function Page({
           </p>
         </header>
 
-        <Filter data={sanitizedData} type={type} />
+        <Filter data={sanitizedData} type={type} savedIds={savedIds} />
       </div>
     </main>
   );
