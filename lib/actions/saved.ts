@@ -52,11 +52,18 @@ export async function getSavedItemsForCurrentUser() {
 
   const client = await clientPromise;
   const db = client.db("data");
-
-  return db
+  const docs = await db
     .collection("info")
     .find({ id: { $in: savedIds } })
     .toArray();
+
+  return docs.map((doc) => {
+    const { _id, ...rest } = doc as any;
+    return {
+      ...rest,
+      _id: _id ? String(_id) : undefined,
+    };
+  });
 }
 
 export async function toggleSaved(resourceId: string) {
