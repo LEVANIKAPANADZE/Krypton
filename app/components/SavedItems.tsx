@@ -8,10 +8,19 @@ interface SavedItemsProps {
 
 export default function SavedItems({ items }: SavedItemsProps) {
   const [search, setSearch] = useState("");
+  const [type, setType] = useState("all");
 
-  const filteredItems = items.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const types = ["all", "resource", "task", "project"];
+
+  const filteredItems = items.filter((item) => {
+    const matchesSearch = item.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesType = type === "all" || item.type === type;
+
+    return matchesSearch && matchesType;
+  });
 
   return (
     <div>
@@ -22,6 +31,19 @@ export default function SavedItems({ items }: SavedItemsProps) {
         placeholder="მასალის ძებნა..."
         className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white outline-none focus:border-cyan-500"
       />
+
+      <div className="mt-4 flex gap-2">
+        {types.map((itemType) => (
+          <button
+            key={itemType}
+            type="button"
+            onClick={() => setType(itemType)}
+            className="rounded-full border border-zinc-800 px-4 py-2 text-sm"
+          >
+            {itemType}
+          </button>
+        ))}
+      </div>
 
       <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {filteredItems.map((item) => (
