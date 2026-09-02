@@ -3,12 +3,13 @@ import Filter from "../../components/Filter";
 import clientPromise from "@/lib/mongodb";
 import { getSavedIdsForCurrentUser } from "@/lib/actions/saved";
 
-type Type = "resource" | "task" | "project";
+type Type = "resource" | "task" | "project" | "saved";
 
 const titleMap: Record<Type, string> = {
   resource: "რესურსები",
   task: "დავალებები",
   project: "პროექტები",
+  saved: "შენახული ჩანაწერები",
 };
 
 export default async function Page({
@@ -17,7 +18,7 @@ export default async function Page({
   params: Promise<{ type: Type }>;
 }) {
   const { type } = await params;
-  const validTypes: Type[] = ["resource", "task", "project"];
+  const validTypes: Type[] = ["resource", "task", "project", "saved"];
 
   if (!validTypes.includes(type)) notFound();
 
