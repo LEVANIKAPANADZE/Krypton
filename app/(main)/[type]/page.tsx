@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
 import Filter from "../../components/Filter";
 import clientPromise from "@/lib/mongodb";
-import { getSavedIdsForCurrentUser } from "@/lib/actions/saved";
+import {
+  getSavedIdsForCurrentUser,
+  getSavedItemsForCurrentUser,
+} from "@/lib/actions/saved";
 
 type Type = "resource" | "task" | "project" | "saved";
 
@@ -23,24 +26,37 @@ export default async function Page({
   if (!validTypes.includes(type)) notFound();
 
   let data: any[] = [];
+  let sanitizedData: any[] = [];
+  let savedIds: string[] = [];
 
-  try {
-    const client = await clientPromise;
-    const db = client.db("data");
-    data = await db.collection("info").find({}).toArray();
-  } catch (e) {
-    console.error(e);
-    data = [];
+  if (type === "saved") {
+    try {
+      const items = await getSavedItemsForCurrentUser();
+      sanitizedData = items.map((item: any) => ({ ...item }));
+    } catch (e) {
+      console.error(e);
+      sanitizedData = [];
+    }
+    savedIds = await getSavedIdsForCurrentUser();
+  } else {
+    try {
+      const client = await clientPromise;
+      const db = client.db("data");
+      data = await db.collection("info").find({}).toArray();
+    } catch (e) {
+      console.error(e);
+      data = [];
+    }
+
+    sanitizedData = data
+      .filter((item: any) => item.type === type)
+      .map((item: any) => ({
+        ...item,
+        _id: item._id.toString(),
+      }));
+
+    savedIds = await getSavedIdsForCurrentUser();
   }
-
-  const sanitizedData = data
-    .filter((item: any) => item.type === type)
-    .map((item: any) => ({
-      ...item,
-      _id: item._id.toString(),
-    }));
-
-  const savedIds = await getSavedIdsForCurrentUser();
 
   return (
     <main className="min-h-screen bg-black text-white p-6 md:p-12 antialiased">
