@@ -28,7 +28,7 @@ export default function Filter({ data, type, savedIds = [] }: FilterProps) {
 
   const filtered = data.filter((item) => {
     return (
-      item.type === type &&
+      (type === "saved" || item.type === type) &&
       (language === "all" || item.language === language) &&
       (grade === "all" || item.grade === grade)
     );

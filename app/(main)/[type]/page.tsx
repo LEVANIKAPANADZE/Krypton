@@ -32,7 +32,10 @@ export default async function Page({
   if (type === "saved") {
     try {
       const items = await getSavedItemsForCurrentUser();
-      sanitizedData = items.map((item: any) => ({ ...item }));
+      sanitizedData = items.map((item: any) => ({
+        ...item,
+        id: item.id ?? item._id ?? item._id,
+      }));
     } catch (e) {
       console.error(e);
       sanitizedData = [];
