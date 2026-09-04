@@ -4,13 +4,13 @@ import SaveButton from "./saveButton";
 
 interface ResourceItem {
   id: string;
-  type: string;
-  language: string;
-  grade: string;
-  icon: string;
-  title: string;
-  description: string;
-  link: string;
+  type?: string;
+  language?: string;
+  grade?: string;
+  icon?: string;
+  title?: string;
+  description?: string;
+  link?: string;
 }
 
 interface ResourceCardProps {
@@ -33,8 +33,11 @@ export default function ResourceCard({
       <div>
         <div className="flex justify-between items-start mb-6">
           <div className="relative">
-            <img src={item.icon} alt="" className="w-12 h-12 relative z-10" />
-
+            {item.icon ? (
+              <img src={item.icon} alt="" className="w-12 h-12 relative z-10" />
+            ) : (
+              <div className="w-12 h-12 bg-zinc-900 rounded" />
+            )}
             <div className="absolute inset bg-cyan-500 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
           </div>
 

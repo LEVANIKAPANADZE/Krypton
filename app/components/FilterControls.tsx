@@ -26,7 +26,6 @@ export default function FilterControls({
         <div className="flex flex-wrap gap-2">
           {languages.map((lang) => (
             <button
-              style={{ cursor: "pointer" }}
               key={lang}
               onClick={() => setLanguage(lang)}
               className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
@@ -57,7 +56,6 @@ export default function FilterControls({
         <div className="flex flex-wrap gap-2">
           {grades.map((g) => (
             <button
-              style={{ cursor: "pointer" }}
               key={g}
               onClick={() => setGrade(g)}
               className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${

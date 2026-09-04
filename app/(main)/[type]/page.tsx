@@ -27,39 +27,37 @@ export default async function Page({
 
   let data: any[] = [];
   let sanitizedData: any[] = [];
-  let savedIds: string[] = [];
+
+  try {
+    const client = await clientPromise;
+    const db = client.db("data");
+    data = await db.collection("info").find({}).toArray();
+  } catch (e) {
+    console.error(e);
+    data = [];
+  }
 
   if (type === "saved") {
     try {
-      const items = await getSavedItemsForCurrentUser();
-      sanitizedData = items.map((item: any) => ({
+      const savedItems = await getSavedItemsForCurrentUser();
+      sanitizedData = savedItems.map((item: any) => ({
         ...item,
-        id: item.id ?? item._id ?? item._id,
+        _id: item._id?.toString ? item._id.toString() : String(item._id),
       }));
     } catch (e) {
       console.error(e);
       sanitizedData = [];
     }
-    savedIds = await getSavedIdsForCurrentUser();
   } else {
-    try {
-      const client = await clientPromise;
-      const db = client.db("data");
-      data = await db.collection("info").find({}).toArray();
-    } catch (e) {
-      console.error(e);
-      data = [];
-    }
-
     sanitizedData = data
       .filter((item: any) => item.type === type)
       .map((item: any) => ({
         ...item,
         _id: item._id.toString(),
       }));
-
-    savedIds = await getSavedIdsForCurrentUser();
   }
+
+  const savedIds = await getSavedIdsForCurrentUser();
 
   return (
     <main className="min-h-screen bg-black text-white p-6 md:p-12 antialiased">
