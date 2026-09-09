@@ -3,6 +3,7 @@
 import { useState } from "react";
 import FilterControls from "./FilterControls";
 import ResourceCard from "./ResourceCard";
+import SearchBar from "./SearchBar";
 
 interface FilterItem {
   id?: string;
@@ -25,12 +26,17 @@ interface FilterProps {
 export default function Filter({ data, type, savedIds = [] }: FilterProps) {
   const [language, setLanguage] = useState<string>("all");
   const [grade, setGrade] = useState<string>("all");
+  const [search, setSearch] = useState("");
 
   const filtered = data.filter((item) => {
     const matchesType = type === "saved" ? true : item.type === type;
+    const matchesSearch =
+      item.title?.toLowerCase().includes(search.toLowerCase()) ||
+      item.description?.toLowerCase().includes(search.toLowerCase());
 
     return (
       matchesType &&
+      matchesSearch &&
       (language === "all" || item.language === language) &&
       (grade === "all" || item.grade === grade)
     );
@@ -38,6 +44,8 @@ export default function Filter({ data, type, savedIds = [] }: FilterProps) {
 
   return (
     <>
+      <SearchBar search={search} setSearch={setSearch} />
+
       <FilterControls
         language={language}
         setLanguage={setLanguage}
