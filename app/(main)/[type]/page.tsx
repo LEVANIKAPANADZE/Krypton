@@ -14,7 +14,14 @@ const titleMap: Record<Type, string> = {
   resource: "რესურსები",
   task: "დავალებები",
   project: "პროექტები",
-  saved: "შენახული მასალები",
+  saved: "შენახული რესურსები",
+};
+
+const countLabelMap: Record<Type, string> = {
+  resource: "მასალა",
+  task: "დავალება",
+  project: "პროექტი",
+  saved: "შენახული რესურსები",
 };
 
 export default async function Page({
@@ -78,7 +85,9 @@ export default async function Page({
 
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/90 border border-zinc-800/80 text-xs md:text-sm font-semibold text-zinc-300 self-start md:self-auto shadow-inner">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span>{sanitizedData.length} შენახული მასალა</span>
+            <span>
+              {sanitizedData.length} {countLabelMap[type]}
+            </span>
           </div>
         </header>
 
