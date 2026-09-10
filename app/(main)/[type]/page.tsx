@@ -70,15 +70,6 @@ export default async function Page({
               <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black tracking-tight text-white">
                 {titleMap[type]}
               </h1>
-              <div className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-cyan-400">
-                <Image
-                  src="/navIcons/icon-nav-bookmark.svg"
-                  alt=""
-                  width={22}
-                  height={22}
-                  className="brightness-125"
-                />
-              </div>
             </div>
             <p className="text-zinc-400 text-sm md:text-base max-w-xl font-normal">
               თქვენი ქიმიის სასწავლო მასალები ერთ ორგანიზებულ სივრცეში.
