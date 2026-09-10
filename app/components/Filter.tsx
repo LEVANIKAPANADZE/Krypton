@@ -43,17 +43,19 @@ export default function Filter({ data, type, savedIds = [] }: FilterProps) {
   });
 
   return (
-    <>
-      <SearchBar search={search} setSearch={setSearch} />
+    <div className="w-full flex flex-col gap-6 md:gap-8">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 bg-zinc-950/80 p-4 md:p-6 rounded-2xl border border-zinc-900/90 shadow-xl">
+        <SearchBar search={search} setSearch={setSearch} />
 
-      <FilterControls
-        language={language}
-        setLanguage={setLanguage}
-        grade={grade}
-        setGrade={setGrade}
-      />
+        <FilterControls
+          language={language}
+          setLanguage={setLanguage}
+          grade={grade}
+          setGrade={setGrade}
+        />
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mt-2">
         {filtered.map((item) => {
           const itemId = String(item.id ?? item._id ?? "");
 
@@ -75,6 +77,17 @@ export default function Filter({ data, type, savedIds = [] }: FilterProps) {
           );
         })}
       </div>
-    </>
+
+      {filtered.length === 0 && (
+        <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-950/40 rounded-2xl border border-zinc-900">
+          <p className="text-lg md:text-xl font-bold text-white mb-2">
+            მასალა ვერ მოიძებნა
+          </p>
+          <p className="text-sm text-zinc-500">
+            სცადეთ ძებნის პარამეტრების შეცვლა ან ფილტრების გასუფთავება.
+          </p>
+        </div>
+      )}
+    </div>
   );
 }
