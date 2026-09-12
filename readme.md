@@ -55,18 +55,6 @@ The platform aims to:
 
 ---
 
-# 📦 Installation
-
-```bash
-git clone <https://github.com/LEVANIKAPANADZE/Krypton>
-
-cd krypton
-
-npm install
-
-npm run dev
-```
-
 📄 License
 
 This project is currently private and developed for educational purposes.
