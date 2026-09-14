@@ -92,37 +92,96 @@ export default async function Page({
         </header>
 
         {sanitizedData.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 md:py-28 px-4 text-center bg-zinc-950/60 border border-zinc-800/80 rounded-3xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-cyan-500/5 blur-[120px] pointer-events-none" />
+          type === "saved" ? (
+            <div className="flex flex-col items-center justify-center py-20 md:py-28 px-4 text-center bg-zinc-950/60 border border-zinc-800/80 rounded-3xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
-            <div className="w-16 h-16 mb-6 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-cyan-400 shadow-lg">
-              <Image
-                src="/navIcons/icon-nav-bookmark.svg"
-                alt=""
-                width={32}
-                height={32}
-                className="opacity-70"
-              />
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-cyan-400 shadow-lg">
+                <Image
+                  src="/navIcons/icon-nav-bookmark.svg"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="opacity-70"
+                />
+              </div>
+
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                შენახული მასალები ვერ მოიძებნა
+              </h2>
+              <p className="text-zinc-400 mb-8 max-w-md text-sm md:text-base">
+                შეინახეთ საინტერესო ქიმიის მასალები და ისინი გამოჩნდება ამ
+                გვერდზე.
+              </p>
+
+              <Link
+                href="/resource"
+                className="inline-flex items-center gap-2 px-6 py-3.5 font-bold text-xs md:text-sm text-black bg-cyan-400 rounded-xl transition-all hover:bg-cyan-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] active:scale-95"
+              >
+                <span>მასალების დათვალიერება</span>
+                <span className="text-base">→</span>
+              </Link>
             </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 md:py-28 px-4 text-center bg-zinc-950/60 border border-zinc-800/80 rounded-3xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              შენახული მასალები ვერ მოიძებნა
-            </h2>
-            <p className="text-zinc-400 mb-8 max-w-md text-sm md:text-base">
-              შეინახეთ საინტერესო ქიმიის მასალები და ისინი გამოჩნდება ამ
-              გვერდზე.
-            </p>
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-cyan-400 shadow-lg">
+                <Image
+                  src="/navIcons/icon-nav-bookmark.svg"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="opacity-70"
+                />
+              </div>
 
-            <Link
-              href="/resource"
-              className="inline-flex items-center gap-2 px-6 py-3.5 font-bold text-xs md:text-sm text-black bg-cyan-400 rounded-xl transition-all hover:bg-cyan-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] active:scale-95"
-            >
-              <span>მასალების დათვალიერება</span>
-              <span className="text-base">→</span>
-            </Link>
-          </div>
+              {type === "task" ? (
+                <>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    {titleMap[type]} ვერ მოიძებნა
+                  </h2>
+                  <p className="text-zinc-400 mb-8 max-w-md text-sm md:text-base">
+                    ახლა არ არის წარმოდგენილი დავალებები. დაბრუნდით მთავარ
+                    გვერდზე ან შექმენით ახალი დავალება.
+                  </p>
+
+                  <Link
+                    href="/"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 font-bold text-xs md:text-sm text-black bg-cyan-400 rounded-xl transition-all hover:bg-cyan-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] active:scale-95"
+                  >
+                    <span>მთავარ გვერდზე დაბრუნება</span>
+                    <span className="text-base">→</span>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    {titleMap[type]} ვერ მოიძებნა
+                  </h2>
+                  <p className="text-zinc-400 mb-8 max-w-md text-sm md:text-base">
+                    ამ კატეგორიაში ჯერ არ არის {countLabelMap[type]} — შეამოწმეთ
+                    სხვა ქვეკატეგორია ან დაამატეთ ახალი.
+                  </p>
+
+                  <Link
+                    href="/resource"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 font-bold text-xs md:text-sm text-black bg-cyan-400 rounded-xl transition-all hover:bg-cyan-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] active:scale-95"
+                  >
+                    <span>მასალების დათვალიერება</span>
+                    <span className="text-base">→</span>
+                  </Link>
+                </>
+              )}
+            </div>
+          )
         ) : (
-          <Filter data={sanitizedData} type={type} savedIds={savedIds} />
+          <Filter
+            data={sanitizedData}
+            type={type}
+            savedIds={savedIds}
+            showSaveButton={type !== "task"}
+          />
         )}
       </div>
     </main>

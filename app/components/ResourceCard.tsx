@@ -15,7 +15,7 @@ interface ResourceCardProps {
     description?: string;
     link?: string;
   };
-  initialSaved: boolean;
+  initialSaved?: boolean | undefined;
 }
 
 export default function ResourceCard({
@@ -52,12 +52,14 @@ export default function ResourceCard({
               </span>
             )}
 
-            <div className="ml-1 z-20">
-              <SaveButton
-                resourceId={String(item.id)}
-                initialSaved={initialSaved}
-              />
-            </div>
+            {typeof initialSaved !== "boolean" ? null : (
+              <div className="ml-1 z-20">
+                <SaveButton
+                  resourceId={String(item.id)}
+                  initialSaved={initialSaved}
+                />
+              </div>
+            )}
           </div>
         </div>
 

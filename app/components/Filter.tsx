@@ -21,9 +21,15 @@ interface FilterProps {
   data: FilterItem[];
   type: string;
   savedIds?: string[];
+  showSaveButton?: boolean;
 }
 
-export default function Filter({ data, type, savedIds = [] }: FilterProps) {
+export default function Filter({
+  data,
+  type,
+  savedIds = [],
+  showSaveButton = true,
+}: FilterProps) {
   const [language, setLanguage] = useState<string>("all");
   const [grade, setGrade] = useState<string>("all");
   const [search, setSearch] = useState("");
@@ -72,7 +78,9 @@ export default function Filter({ data, type, savedIds = [] }: FilterProps) {
                 description: item.description,
                 link: item.link,
               }}
-              initialSaved={savedIds.includes(itemId)}
+              initialSaved={
+                showSaveButton ? (savedIds ?? []).includes(itemId) : undefined
+              }
             />
           );
         })}
