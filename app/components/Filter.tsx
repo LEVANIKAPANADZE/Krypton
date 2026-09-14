@@ -89,10 +89,18 @@ export default function Filter({
       {filtered.length === 0 && (
         <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-950/40 rounded-2xl border border-zinc-900">
           <p className="text-lg md:text-xl font-bold text-white mb-2">
-            მასალა ვერ მოიძებნა
+            {type === "task"
+              ? "დავალებები არ არის"
+              : type === "project"
+                ? "პროექტები არ არის"
+                : type === "saved"
+                  ? "შენახული მასალები არ არის"
+                  : "რესურსები არ არის"}
           </p>
           <p className="text-sm text-zinc-500">
-            სცადეთ ძებნის პარამეტრების შეცვლა ან ფილტრების გასუფთავება.
+            {type === "saved"
+              ? "ჯერ არ გაქვთ შენახული მასალები."
+              : "ამ კატეგორიაში არცერთი ელემენტი არ არის."}
           </p>
         </div>
       )}
