@@ -20,7 +20,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
         type="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="მოიძიე მასალები..."
+        placeholder="ჩაწერეთ საძიებო სიტყვა ან ფრაზა..."
         className="w-full h-11 md:h-12 pl-11 pr-4 rounded-xl border border-zinc-800 bg-zinc-900/60 text-sm md:text-base text-white placeholder-zinc-500 outline-none transition-all duration-300 focus:border-cyan-500/60 focus:bg-zinc-900 focus:ring-4 focus:ring-cyan-500/10"
       />
     </div>
