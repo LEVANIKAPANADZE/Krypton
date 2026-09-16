@@ -51,6 +51,24 @@ export default function Filter({
   const hasActiveFilters =
     search.trim().length > 0 || language !== "all" || grade !== "all";
 
+  const emptyStateTitle =
+    type === "saved"
+      ? "შენახული მასალები არ არის"
+      : type === "task"
+        ? "დავალებები არ არის"
+        : type === "project"
+          ? "პროექტები არ არის"
+          : "რესურსები არ არის";
+
+  const emptyStateDescription =
+    type === "saved"
+      ? "ჯერ არ გაქვთ შენახული მასალები."
+      : type === "task"
+        ? "ამჟამად არ არის წარმოდგენილი დავალებები."
+        : type === "project"
+          ? "ამ კატეგორიაში ჯერ არ არის პროექტები."
+          : "ამ კატეგორიაში ჯერ არ არის რესურსები.";
+
   return (
     <div className="w-full flex flex-col gap-6 md:gap-8">
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 bg-zinc-950/80 p-4 md:p-6 rounded-2xl border border-zinc-900/90 shadow-xl">
@@ -92,14 +110,12 @@ export default function Filter({
       {filtered.length === 0 && (
         <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-950/40 rounded-2xl border border-zinc-900">
           <p className="text-lg md:text-xl font-bold text-white mb-2">
-            {hasActiveFilters
-              ? "არაფერი მოიძებნა"
-              : "შენახული მასალები არ არის"}
+            {hasActiveFilters ? "არაფერი მოიძებნა" : emptyStateTitle}
           </p>
           <p className="text-sm text-zinc-500">
             {hasActiveFilters
               ? "სცადეთ ძებნის, ენის ან კლასის შეცვლა."
-              : "ჯერ არ გაქვთ შენახული მასალები."}
+              : emptyStateDescription}
           </p>
         </div>
       )}

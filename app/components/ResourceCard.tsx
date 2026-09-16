@@ -52,7 +52,8 @@ export default function ResourceCard({
               </span>
             )}
 
-            {typeof initialSaved !== "boolean" ? null : (
+            {item.type === "task" ||
+            typeof initialSaved !== "boolean" ? null : (
               <div className="ml-1 z-20">
                 <SaveButton
                   resourceId={String(item.id)}
