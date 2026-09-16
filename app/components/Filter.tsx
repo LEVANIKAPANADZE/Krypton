@@ -48,6 +48,9 @@ export default function Filter({
     );
   });
 
+  const hasActiveFilters =
+    search.trim().length > 0 || language !== "all" || grade !== "all";
+
   return (
     <div className="w-full flex flex-col gap-6 md:gap-8">
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 bg-zinc-950/80 p-4 md:p-6 rounded-2xl border border-zinc-900/90 shadow-xl">
@@ -89,18 +92,14 @@ export default function Filter({
       {filtered.length === 0 && (
         <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-950/40 rounded-2xl border border-zinc-900">
           <p className="text-lg md:text-xl font-bold text-white mb-2">
-            {type === "task"
-              ? "დავალებები არ არის"
-              : type === "project"
-                ? "პროექტები არ არის"
-                : type === "saved"
-                  ? "შენახული მასალები არ არის"
-                  : "რესურსები არ არის"}
+            {hasActiveFilters
+              ? "არაფერი მოიძებნა"
+              : "შენახული მასალები არ არის"}
           </p>
           <p className="text-sm text-zinc-500">
-            {type === "saved"
-              ? "ჯერ არ გაქვთ შენახული მასალები."
-              : "ამ კატეგორიაში არცერთი ელემენტი არ არის."}
+            {hasActiveFilters
+              ? "სცადეთ ძებნის, ენის ან კლასის შეცვლა."
+              : "ჯერ არ გაქვთ შენახული მასალები."}
           </p>
         </div>
       )}
