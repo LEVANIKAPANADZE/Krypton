@@ -4,6 +4,7 @@ import clientPromise from "@/lib/mongodb";
 import { sendEmail } from "@/lib/mailer";
 
 const client = await clientPromise;
+
 const db = client.db("data");
 
 export const auth = betterAuth({
@@ -11,8 +12,19 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
     minPasswordLength: 8,
     maxPasswordLength: 20,
+  },
+
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendEmail(
+        user.email,
+        "Verify your Krypton account",
+        `Click this link to verify your email: ${url}`,
+      );
+    },
   },
 
   user: {
