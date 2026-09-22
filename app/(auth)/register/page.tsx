@@ -6,7 +6,7 @@ import { authClient } from "@/lib/auth-client";
 import { registerSchema } from "@/lib/auth-validation";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
 
-export default function Page() {
+export default function Register() {
   const [formData, setFormData] = useState<any>({
     name: "",
     email: "",

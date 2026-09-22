@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { loginSchema } from "@/lib/auth-validation";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
 
-export default function Page() {
+export default function Login() {
   const router = useRouter();
 
   const [formData, setFormData] = useState<any>({
