@@ -10,11 +10,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-[#0a0a0a] border-t border-cyan-500/10">
+    <footer className="w-full bg-[#0b0710] border-t border-purple-500/10">
       <div className="max-w-7xl mx-auto px-6 py-10 md:px-12 md:py-14 xl:px-20 xl:py-16">
         <div className="flex flex-col gap-10 md:hidden">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-500/10">
               <Image
                 src="/KryptonNewLogo.png"
                 alt="Krypton logo"
@@ -22,7 +22,7 @@ export default function Footer() {
                 height={20}
               />
             </span>
-            <h2 className="text-2xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold tracking-wider bg-gradient-to-r from-purple-300 via-purple-400 to-white bg-clip-text text-transparent">
               KRYPTON
             </h2>
           </div>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <Link
                   href={item.path}
                   key={item.path}
-                  className="py-3 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-cyan-400"
+                  className="py-3 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-purple-400"
                 >
                   {item.name}
                 </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
                 href="https://my-contacts-hazel.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-cyan-400 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline"
+                className="text-xs font-bold text-purple-400 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline"
               >
                 Kapanadze Levani
               </a>
@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="hidden md:grid md:grid-cols-[1fr_auto] items-start gap-y-6 gap-x-12 xl:gap-x-20 mb-12">
           <div className="col-start-1 row-start-1 flex items-center gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-500/10">
               <Image
                 src="/KryptonNewLogo.png"
                 alt="Krypton logo"
@@ -82,7 +82,7 @@ export default function Footer() {
                 height={20}
               />
             </span>
-            <h2 className="text-4xl font-bold tracking-wider bg-gradient-to-r from-cyan-300 via-cyan-400 to-white bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold tracking-wider bg-gradient-to-r from-purple-300 via-purple-400 to-white bg-clip-text text-transparent">
               KRYPTON
             </h2>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
           <div className="col-start-2 row-start-1 row-span-2 mt-[50px]">
             <h3 className="text-white text-lg font-semibold mb-5">
               ნავიგაცია
-              <span className="mt-2 block h-0.5 w-10 bg-gradient-to-r from-cyan-400 to-transparent" />
+              <span className="mt-2 block h-0.5 w-10 bg-gradient-to-r from-purple-400 to-transparent" />
             </h3>
 
             <nav className="flex flex-col gap-3">
@@ -98,9 +98,9 @@ export default function Footer() {
                 <Link
                   href={item.path}
                   key={item.path}
-                  className="group inline-flex items-center gap-2 rounded-sm font-medium text-gray-400 outline-none transition-colors duration-300 hover:text-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                  className="group inline-flex items-center gap-2 rounded-sm font-medium text-gray-400 outline-none transition-colors duration-300 hover:text-purple-400 focus-visible:ring-2 focus-visible:ring-purple-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0710]"
                 >
-                  <span className="h-1 w-1 -translate-x-1 rounded-full bg-cyan-400 opacity-0 transition-all duration-300 motion-reduce:transition-none group-hover:translate-x-0 group-hover:opacity-100" />
+                  <span className="h-1 w-1 -translate-x-1 rounded-full bg-purple-400 opacity-0 transition-all duration-300 motion-reduce:transition-none group-hover:translate-x-0 group-hover:opacity-100" />
                   {item.name}
                 </Link>
               ))}
@@ -135,7 +135,7 @@ export default function Footer() {
               href="https://my-contacts-hazel.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-sm font-bold text-cyan-400 underline-offset-4 outline-none transition-all duration-300 hover:text-white hover:underline focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+              className="rounded-sm font-bold text-purple-400 underline-offset-4 outline-none transition-all duration-300 hover:text-white hover:underline focus-visible:ring-2 focus-visible:ring-purple-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0710]"
             >
               Kapanadze Levani
             </a>
