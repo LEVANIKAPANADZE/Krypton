@@ -1,6 +1,6 @@
 # ⚛️ Krypton
 
-Krypton is a modern chemistry learning platform built for elementary and secondary school students.  
+Krypton is a modern chemistry learning platform built for any student.  
 The platform focuses on structured learning, conceptual understanding, and clean educational design instead of mechanical memorization.
 
 ---
