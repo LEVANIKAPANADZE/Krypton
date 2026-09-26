@@ -108,10 +108,10 @@ export default function Page() {
               <span aria-hidden="true">→</span>
             </Link>
             <Link
-              href="/resource"
+              href="/project"
               className="text-sm font-medium text-zinc-300 hover:text-white transition-colors duration-200"
             >
-              ან ნახე რესურსები
+              ან ნახე პროექტები
             </Link>
           </div>
         </div>
