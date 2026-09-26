@@ -27,9 +27,9 @@ export default async function Header() {
         <img
           src="/KryptonNewLogo.png"
           alt="Krypton logo"
-          className="w-9 h-9 md:w-11 md:h-11 rounded-md shadow-[0_0_15px_rgba(245,158,11,0.15)] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-shadow duration-300"
+          className="w-9 h-9 md:w-11 md:h-11 rounded-md shadow-[0_0_15px_rgba(251,191,36,0.15)] group-hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-shadow duration-300"
         />
-        <span className="text-zinc-100 font-serif font-extrabold tracking-widest text-lg md:text-xl group-hover:text-amber-500 transition-colors duration-300">
+        <span className="text-zinc-100 font-serif font-extrabold tracking-widest text-lg md:text-xl group-hover:text-amber-400 transition-colors duration-300">
           KRYPTON
         </span>
       </Link>
@@ -41,14 +41,14 @@ export default async function Header() {
           <>
             <Link
               href="/saved"
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-amber-500"
+              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-amber-400"
             >
               შენახულები
             </Link>
             <Link
               href="/profile"
               aria-label="პროფილი"
-              className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-800 bg-zinc-900/50 transition-colors duration-200 hover:border-amber-500/50 hover:bg-amber-500/10"
+              className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-800 bg-zinc-900/50 transition-colors duration-200 hover:border-amber-400/50 hover:bg-amber-400/10"
             >
               <img src="/user-icon.svg" alt="" className="w-5 h-5 opacity-80" />
             </Link>
@@ -63,7 +63,7 @@ export default async function Header() {
             </Link>
             <Link
               href="/register"
-              className="px-6 py-2.5 rounded-full bg-amber-600 hover:bg-amber-500 shadow-[0_0_15px_-3px_rgba(245,158,11,0.4)] hover:shadow-[0_0_25px_-2px_rgba(245,158,11,0.6)] text-zinc-950 text-sm font-bold tracking-wide transition-all duration-300 hover:-translate-y-0.5"
+              className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 shadow-[0_0_15px_-3px_rgba(251,191,36,0.4)] hover:shadow-[0_0_25px_-2px_rgba(251,191,36,0.6)] text-zinc-950 text-sm font-bold tracking-wide transition-all duration-300 hover:-translate-y-0.5"
             >
               რეგისტრაცია
             </Link>
