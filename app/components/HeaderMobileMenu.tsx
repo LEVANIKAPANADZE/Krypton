@@ -28,9 +28,9 @@ export default function HeaderMobileMenu({
         onClick={() => setOpen(true)}
         aria-label="მენიუს გახსნა"
         aria-expanded={open}
-        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-800 bg-white/[0.02] transition-colors hover:border-purple-500/50"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-800 bg-zinc-900/50 transition-colors hover:border-amber-500/50 hover:bg-amber-500/10"
       >
-        <img src="/cheeseburger.svg" alt="" className="h-5 w-5" />
+        <img src="/cheeseburger.svg" alt="" className="h-5 w-5 opacity-80" />
       </button>
 
       {open && (
@@ -39,19 +39,18 @@ export default function HeaderMobileMenu({
             type="button"
             aria-label="მენიუს დახურვა"
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 cursor-default bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-40 cursor-default bg-zinc-950/80 backdrop-blur-sm"
           />
 
-          <aside className="fixed inset-y-0 right-0 z-50 flex h-dvh w-72 max-w-[80%] flex-col gap-2 border-l border-purple-500/20 bg-[#0b0710] px-6 py-6 shadow-[-10px_0_40px_-10px_rgba(0,0,0,0.6)]">
-            <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
+          <aside className="fixed inset-y-0 right-0 z-50 flex h-dvh w-72 max-w-[80%] flex-col gap-2 border-l border-zinc-800/50 bg-zinc-950 px-6 py-6 shadow-[-15px_0_40px_-10px_rgba(0,0,0,0.8)]">
+            <div className="mb-8 flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <img
                   src="/KryptonNewLogo.png"
                   alt="Krypton logo"
-                  className="h-8 w-8 rounded-lg"
+                  className="h-8 w-8 rounded-md shadow-[0_0_10px_rgba(245,158,11,0.2)]"
                 />
-
-                <span className="font-bold tracking-wide text-white">
+                <span className="font-serif font-extrabold tracking-widest text-zinc-100">
                   KRYPTON
                 </span>
               </div>
@@ -60,13 +59,13 @@ export default function HeaderMobileMenu({
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="მენიუს დახურვა"
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-gray-800 text-gray-400 transition-colors hover:border-purple-500/50 hover:text-purple-400"
+                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-zinc-800 text-zinc-400 transition-colors hover:border-amber-500/50 hover:text-amber-500 hover:bg-amber-500/10"
               >
                 ✕
               </button>
             </div>
 
-            <nav className="flex flex-col gap-1">
+            <nav className="flex flex-col gap-2">
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
 
@@ -75,10 +74,10 @@ export default function HeaderMobileMenu({
                     key={item.path}
                     href={item.path}
                     onClick={() => setOpen(false)}
-                    className={`rounded-lg px-3 py-3 font-medium transition-colors ${
+                    className={`rounded-lg px-4 py-3 font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-purple-500/[0.08] text-purple-400"
-                        : "text-gray-300 hover:bg-white/[0.03] hover:text-purple-400"
+                        ? "bg-amber-500/10 text-amber-500 border border-amber-500/20"
+                        : "text-zinc-400 hover:bg-zinc-900 hover:text-amber-500 border border-transparent"
                     }`}
                   >
                     {item.label}
@@ -87,14 +86,14 @@ export default function HeaderMobileMenu({
               })}
             </nav>
 
-            <div className="my-3 h-px bg-gray-800" />
+            <div className="my-5 h-px bg-zinc-800/50" />
 
             {isAuthenticated ? (
-              <>
+              <div className="flex flex-col gap-2">
                 <Link
                   href="/saved"
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 font-medium text-gray-300 transition-colors hover:bg-white/[0.03] hover:text-purple-400"
+                  className="rounded-lg px-4 py-3 font-medium text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-amber-500"
                 >
                   შენახულები
                 </Link>
@@ -102,7 +101,7 @@ export default function HeaderMobileMenu({
                 <Link
                   href="/profile"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 rounded-lg px-3 py-3 font-medium text-gray-300 transition-colors hover:bg-white/[0.03] hover:text-purple-400"
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 font-medium text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-amber-500"
                 >
                   <img
                     src="/user-icon.svg"
@@ -111,13 +110,13 @@ export default function HeaderMobileMenu({
                   />
                   პროფილი
                 </Link>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="flex flex-col gap-3 mt-auto mb-4">
                 <Link
                   href="/login"
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 font-medium text-gray-300 transition-colors hover:bg-white/[0.03] hover:text-purple-400"
+                  className="rounded-full px-4 py-3 text-center font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white border border-zinc-800"
                 >
                   შესვლა
                 </Link>
@@ -125,11 +124,11 @@ export default function HeaderMobileMenu({
                 <Link
                   href="/register"
                   onClick={() => setOpen(false)}
-                  className="mt-1 rounded-lg bg-purple-500 px-3 py-3 text-center font-semibold text-black transition-colors hover:bg-purple-400"
+                  className="rounded-full bg-amber-600 px-4 py-3 text-center font-bold tracking-wide text-zinc-950 transition-all hover:bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
                 >
                   რეგისტრაცია
                 </Link>
-              </>
+              </div>
             )}
           </aside>
         </>

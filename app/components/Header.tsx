@@ -19,38 +19,36 @@ export default async function Header() {
   const isAuthenticated = Boolean(session?.user);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#0b0710]/90 backdrop-blur-xl border-b border-purple-500/10 shadow-[0_1px_0_0_rgba(185,79,224,0.05)] px-4 py-3.5 md:px-9 md:py-5 xl:px-14 flex items-center justify-between">
-      <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-purple-500/[0.06] blur-3xl" />
-
+    <header className="sticky top-0 z-40 w-full bg-zinc-950/85 backdrop-blur-md border-b border-zinc-800/50 px-4 py-3.5 md:px-9 md:py-5 xl:px-14 flex items-center justify-between transition-all">
       <Link
         href="/"
-        className="relative flex items-center gap-2.5 flex-shrink-0"
+        className="relative flex items-center gap-3 flex-shrink-0 group"
       >
         <img
           src="/KryptonNewLogo.png"
           alt="Krypton logo"
-          className="w-9 h-9 md:w-11 md:h-11 rounded-lg"
+          className="w-9 h-9 md:w-11 md:h-11 rounded-md shadow-[0_0_15px_rgba(245,158,11,0.15)] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-shadow duration-300"
         />
-        <span className="text-white font-bold tracking-wide text-base md:text-lg">
+        <span className="text-zinc-100 font-serif font-extrabold tracking-widest text-lg md:text-xl group-hover:text-amber-500 transition-colors duration-300">
           KRYPTON
         </span>
       </Link>
 
       <HeaderNav navItems={navItems} />
 
-      <div className="relative hidden md:flex items-center gap-3.5">
+      <div className="relative hidden md:flex items-center gap-6">
         {isAuthenticated ? (
           <>
             <Link
               href="/saved"
-              className="px-4.5 py-2.5 text-sm font-medium text-gray-400 rounded-lg transition-colors duration-200 hover:text-purple-400 hover:bg-white/[0.03]"
+              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-amber-500"
             >
               შენახულები
             </Link>
             <Link
               href="/profile"
               aria-label="პროფილი"
-              className="flex items-center justify-center w-11 h-11 rounded-lg border border-gray-800 bg-white/[0.02] transition-colors duration-200 hover:border-purple-500/50 hover:bg-purple-500/[0.05]"
+              className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-800 bg-zinc-900/50 transition-colors duration-200 hover:border-amber-500/50 hover:bg-amber-500/10"
             >
               <img src="/user-icon.svg" alt="" className="w-5 h-5 opacity-80" />
             </Link>
@@ -59,13 +57,13 @@ export default async function Header() {
           <>
             <Link
               href="/login"
-              className="px-4.5 py-2.5 text-sm font-medium text-gray-400 rounded-lg transition-colors duration-200 hover:text-purple-400 hover:bg-white/[0.03]"
+              className="text-sm font-medium text-zinc-300 transition-colors duration-200 hover:text-white"
             >
               შესვლა
             </Link>
             <Link
               href="/register"
-              className="px-5.5 py-2.5 rounded-lg bg-purple-500 hover:bg-purple-400 shadow-[0_0_22px_-4px_rgba(185,79,224,0.5)] text-black text-sm font-semibold transition-all duration-200"
+              className="px-6 py-2.5 rounded-full bg-amber-600 hover:bg-amber-500 shadow-[0_0_15px_-3px_rgba(245,158,11,0.4)] hover:shadow-[0_0_25px_-2px_rgba(245,158,11,0.6)] text-zinc-950 text-sm font-bold tracking-wide transition-all duration-300 hover:-translate-y-0.5"
             >
               რეგისტრაცია
             </Link>

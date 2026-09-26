@@ -16,7 +16,7 @@ export default function HeaderNav({ navItems }: HeaderNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="relative hidden md:flex items-center gap-1.5">
+    <nav className="relative hidden md:flex items-center gap-8 xl:gap-12">
       {navItems.map((item) => {
         const isActive = pathname === item.path;
 
@@ -24,15 +24,13 @@ export default function HeaderNav({ navItems }: HeaderNavProps) {
           <Link
             key={item.path}
             href={item.path}
-            className={`relative px-4.5 py-2.5 text-sm font-medium rounded-lg transition-colors duration-200 ${
-              isActive
-                ? "text-purple-400 bg-purple-500/[0.08]"
-                : "text-gray-400 hover:text-purple-400 hover:bg-white/[0.03]"
+            className={`relative py-2 text-sm font-medium transition-colors duration-200 ${
+              isActive ? "text-amber-500" : "text-zinc-400 hover:text-amber-500"
             }`}
           >
             {item.label}
             {isActive && (
-              <span className="absolute left-4 right-4 -bottom-[15px] h-px bg-purple-400 shadow-[0_0_8px_rgba(185,79,224,0.8)]" />
+              <span className="absolute left-0 right-0 -bottom-[26px] xl:-bottom-[30px] h-[2px] bg-amber-500 shadow-[0_-2px_10px_rgba(245,158,11,0.8)] rounded-t-full" />
             )}
           </Link>
         );
