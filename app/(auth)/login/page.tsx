@@ -20,6 +20,8 @@ export default function Login() {
     password: "",
   });
 
+  const [emailNotVerified, setEmailNotVerified] = useState(false);
+
   const inputs: any = [
     {
       placeholder: "ელ. ფოსტა",
@@ -42,6 +44,7 @@ export default function Login() {
       email: "",
       password: "",
     });
+    setEmailNotVerified(false);
 
     const result = loginSchema.safeParse(formData);
 
@@ -78,6 +81,10 @@ export default function Login() {
         password: "",
       });
 
+      if (error.code === "EMAIL_NOT_VERIFIED") {
+        setEmailNotVerified(true);
+      }
+
       return;
     }
 
@@ -89,14 +96,14 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center p-4">
-      <div className="w-full max-w-sm md:max-w-md xl:max-w-lg rounded-2xl border border-gray-800 bg-[#0a0a0a] px-6 py-8 md:px-10 md:py-10 xl:px-12 xl:py-12 shadow-2xl">
-        <div className="mb-8 md:mb-10 text-center">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+      <div className="w-full max-w-sm rounded-2xl border border-gray-800 bg-[#0a0a0a] px-6 py-8 shadow-2xl md:max-w-md md:px-10 md:py-10 xl:max-w-lg xl:px-12 xl:py-12">
+        <div className="mb-8 text-center md:mb-10">
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
             <span className="text-cyan-400">კეთილი იყოს </span>
             <span className="text-white">თქვენი მობრძანება</span>
           </h1>
 
-          <p className="mt-2 md:mt-3 text-sm md:text-base text-gray-400">
+          <p className="mt-2 text-sm text-gray-400 md:mt-3 md:text-base">
             შედით თქვენს Krypton-ის ანგარიშში
           </p>
         </div>
@@ -120,7 +127,7 @@ export default function Login() {
                       [item.inputName]: e.target.value,
                     })
                   }
-                  className="w-full h-11 md:h-12 pl-11 pr-4 rounded-xl border border-gray-800 bg-white/[0.02] text-sm md:text-base text-white placeholder-gray-500 outline-none transition-all focus:border-cyan-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-cyan-500/10"
+                  className="h-11 w-full rounded-xl border border-gray-800 bg-white/[0.02] pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-gray-500 focus:border-cyan-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-cyan-500/10 md:h-12 md:text-base"
                 />
 
                 <img
@@ -130,9 +137,9 @@ export default function Login() {
                 />
               </div>
 
-              <div className="min-h-[18px] mt-1 px-1">
+              <div className="mt-1 min-h-[18px] px-1">
                 {errors[item.inputName] && (
-                  <span className="text-xs md:text-sm text-red-400">
+                  <span className="text-xs text-red-400 md:text-sm">
                     {errors[item.inputName]}
                   </span>
                 )}
@@ -140,26 +147,33 @@ export default function Login() {
             </div>
           ))}
 
+          {emailNotVerified && (
+            <Link
+              href={`/verify-email?email=${encodeURIComponent(formData.email)}`}
+              className="text-sm font-semibold text-cyan-400 underline underline-offset-4 hover:text-cyan-300"
+            >
+              ელ. ფოსტის დადასტურება
+            </Link>
+          )}
+
           <button
             type="submit"
-            className="mt-1 h-11 md:h-12 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-[0.98] text-black text-sm md:text-base font-semibold transition-all cursor-pointer"
+            className="mt-1 h-11 cursor-pointer rounded-xl bg-cyan-500 text-sm font-semibold text-black transition-all hover:bg-cyan-400 active:scale-[0.98] md:h-12 md:text-base"
           >
             შესვლა
           </button>
         </form>
 
-        <div className="my-6 md:my-8 flex items-center gap-3 md:gap-4">
+        <div className="my-6 flex items-center gap-3 md:my-8 md:gap-4">
           <div className="h-px flex-1 bg-gray-800" />
-
-          <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500">
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 md:text-xs">
             ან
           </span>
-
           <div className="h-px flex-1 bg-gray-800" />
         </div>
 
         <div className="flex justify-center">
-          <button className="group flex items-center gap-2 md:gap-3 rounded-xl border border-gray-700 bg-gray-800/60 px-5 py-2.5 transition-colors hover:bg-gray-800 cursor-pointer">
+          <button className="group flex cursor-pointer items-center gap-2 rounded-xl border border-gray-700 bg-gray-800/60 px-5 py-2.5 transition-colors hover:bg-gray-800 md:gap-3">
             <img
               src="/Guest.png"
               alt="Guest logo"
@@ -168,14 +182,14 @@ export default function Login() {
 
             <Link
               href="/"
-              className="text-sm md:text-base font-medium text-gray-300 transition-colors group-hover:text-white"
+              className="text-sm font-medium text-gray-300 transition-colors group-hover:text-white md:text-base"
             >
               სტუმრის სტატუსით გაგრძელება
             </Link>
           </button>
         </div>
 
-        <p className="mt-8 md:mt-10 text-center text-sm md:text-base text-gray-500">
+        <p className="mt-8 text-center text-sm text-gray-500 md:mt-10 md:text-base">
           არ გაქვთ ანგარიში?{" "}
           <Link
             href="/register"
