@@ -71,8 +71,9 @@ export default function Page() {
             ქიმიის სასწავლო პლატფორმა
           </div>
 
-          <h1 className="font-serif font-extrabold uppercase tracking-widest text-4xl md:text-6xl xl:text-7xl leading-[1] text-zinc-100">
-            Krypton
+          <h1 className="font-serif font-extrabold uppercase tracking-widest text-4xl md:text-6xl xl:text-7xl leading-[1]">
+            <span className="text-zinc-100">KRY</span>
+            <span className="text-amber-300">PTON</span>
           </h1>
           <div className="h-[3px] w-14 rounded-full bg-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.6)]" />
 
