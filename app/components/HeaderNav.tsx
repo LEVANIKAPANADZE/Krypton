@@ -25,12 +25,12 @@ export default function HeaderNav({ navItems }: HeaderNavProps) {
             key={item.path}
             href={item.path}
             className={`relative py-2 text-sm font-medium transition-colors duration-200 ${
-              isActive ? "text-amber-400" : "text-zinc-400 hover:text-amber-400"
+              isActive ? "text-amber-300" : "text-zinc-400 hover:text-amber-300"
             }`}
           >
             {item.label}
             {isActive && (
-              <span className="absolute left-0 right-0 -bottom-[26px] xl:-bottom-[30px] h-[2px] bg-amber-400 shadow-[0_-2px_10px_rgba(251,191,36,0.8)] rounded-t-full" />
+              <span className="absolute left-0 right-0 -bottom-[26px] xl:-bottom-[30px] h-[2px] bg-amber-300 shadow-[0_-2px_10px_rgba(252,211,77,0.8)] rounded-t-full" />
             )}
           </Link>
         );
