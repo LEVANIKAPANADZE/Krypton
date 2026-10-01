@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
 export default function VerifyEmailPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "";
 
+  const { data: session, isPending } = authClient.useSession();
+
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isPending && session?.user?.emailVerified) {
+      router.replace("/");
+    }
+  }, [session, isPending, router]);
 
   async function resendEmail() {
     if (!email) {
@@ -36,6 +45,14 @@ export default function VerifyEmailPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (session?.user?.emailVerified) {
+    return <div>Redirecting...</div>;
   }
 
   return (
