@@ -53,30 +53,33 @@ export default function VerifyEmailPage() {
       });
 
       if (error) {
-        setMessage(error.message || "Failed to send verification email.");
+        setMessage(
+          error.message || "ვერ მოხერხდა დამადასტურებელი ელ. ფოსტის გაგზავნა.",
+        );
       } else {
-        setMessage("Verification email sent!");
+        setMessage("დადასტურების ბმული ხელახლა გამოგზავნილია!");
         setCooldown(60);
       }
     } catch {
-      setMessage("Something went wrong. Please try again.");
+      setMessage("დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ თავიდან.");
     } finally {
       setLoading(false);
     }
   }
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <div>იტვირთება...</div>;
   }
 
   if (session?.user?.emailVerified) {
-    return <div>Redirecting...</div>;
+    return <div>გადამისამართება...</div>;
   }
 
   return (
     <div>
-      <h1>Verify your email</h1>
-      <p>Please check your inbox and click the verification link.</p>
+      <h1>დაადასტურეთ ელ. ფოსტა</h1>
+      <p>გთხოვთ, შეამოწმოთ თქვენი ელ. ფოსტა და დააჭიროთ დადასტურების ბმულს.</p>
+
       {email && <p>{email}</p>}
 
       <button
@@ -84,10 +87,10 @@ export default function VerifyEmailPage() {
         disabled={loading || !email || cooldown > 0}
       >
         {loading
-          ? "Sending..."
+          ? "იგზავნება..."
           : cooldown > 0
-            ? `Resend in ${cooldown}s`
-            : "Resend verification email"}
+            ? `ხელახლა გაგზავნა ${cooldown} წამში`
+            : "დადასტურების ბმულის ხელახლა გაგზავნა"}
       </button>
 
       {message && <p>{message}</p>}
