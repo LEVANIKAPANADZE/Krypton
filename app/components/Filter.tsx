@@ -71,7 +71,7 @@ export default function Filter({
 
   return (
     <div className="w-full flex flex-col gap-6 md:gap-8">
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 bg-zinc-950/80 p-4 md:p-6 rounded-2xl border border-zinc-900/90 shadow-xl">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 bg-zinc-900/50 p-4 md:p-6 rounded-2xl border border-zinc-800/50">
         <SearchBar search={search} setSearch={setSearch} />
 
         <FilterControls
@@ -109,11 +109,11 @@ export default function Filter({
       </div>
 
       {filtered.length === 0 && (
-        <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-950/40 rounded-2xl border border-zinc-900">
-          <p className="text-lg md:text-xl font-bold text-white mb-2">
+        <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center bg-zinc-900/50 rounded-2xl border border-zinc-800/50">
+          <p className="text-lg md:text-xl font-semibold text-zinc-100 mb-2">
             {hasActiveFilters ? "არაფერი მოიძებნა" : emptyStateTitle}
           </p>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-400">
             {hasActiveFilters
               ? "სცადეთ ძებნის, ენის ან კლასის შეცვლა."
               : emptyStateDescription}

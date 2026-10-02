@@ -21,7 +21,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="ჩაწერეთ საძიებო სიტყვა ან ფრაზა..."
-        className="w-full h-11 md:h-12 pl-11 pr-4 rounded-xl border border-zinc-800 bg-zinc-900/60 text-sm md:text-base text-white placeholder-zinc-500 outline-none transition-all duration-300 focus:border-cyan-500/60 focus:bg-zinc-900 focus:ring-4 focus:ring-cyan-500/10"
+        className="w-full h-11 md:h-12 pl-11 pr-4 rounded-xl border border-zinc-800/50 bg-zinc-900/50 text-sm md:text-base text-zinc-100 placeholder-zinc-500 outline-none transition-colors duration-200 focus:border-amber-300/50 focus:ring-2 focus:ring-amber-300/20"
       />
     </div>
   );

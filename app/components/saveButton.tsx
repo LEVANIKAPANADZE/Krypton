@@ -41,20 +41,21 @@ export default function SaveButton({
       aria-pressed={saved}
       disabled={isPending}
       onClick={handleSave}
-      className={`rounded-lg p-2 transition-all duration-300 ${
+      className={`rounded-lg p-2 border transition-colors duration-200 ${
         saved
-          ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 shadow-[0_0_12px_rgba(6,182,212,0.25)]"
-          : "bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white hover:border-zinc-700"
+          ? "bg-amber-300/10 border-amber-300/50"
+          : "bg-zinc-900/50 border-zinc-800/50 hover:border-amber-300/50 hover:bg-amber-300/5"
       } ${isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
     >
       <Image
-        src="/navIcons/icon-nav-bookmark.svg"
+        src={
+          saved
+            ? "/navIcons/bookmark-filled.svg"
+            : "/navIcons/bookmark-outline.svg"
+        }
         alt=""
         width={18}
         height={18}
-        className={
-          saved ? "brightness-125" : "opacity-70 group-hover:opacity-100"
-        }
       />
     </button>
   );
