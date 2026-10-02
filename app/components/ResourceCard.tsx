@@ -6,7 +6,8 @@ import SaveButton from "../components/saveButton";
 
 interface ResourceCardProps {
   item: {
-    id: string;
+    id?: string;
+    _id?: string;
     type?: string;
     language?: string;
     grade?: string;
@@ -22,6 +23,7 @@ export default function ResourceCard({
   item,
   initialSaved,
 }: ResourceCardProps) {
+  const resourceId = String(item.id || item._id || "");
   return (
     <article className="group relative flex flex-col justify-between p-5 md:p-6 bg-zinc-950/90 border border-zinc-800/80 rounded-2xl hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/0 to-transparent group-hover:via-cyan-500 transition-all duration-500" />
@@ -56,7 +58,7 @@ export default function ResourceCard({
             typeof initialSaved !== "boolean" ? null : (
               <div className="ml-1 z-20">
                 <SaveButton
-                  resourceId={String(item.id)}
+                  resourceId={resourceId}
                   initialSaved={initialSaved}
                 />
               </div>
@@ -82,7 +84,7 @@ export default function ResourceCard({
 
       <div className="pt-4 border-t border-zinc-900/90 flex items-center justify-between mt-auto">
         <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest">
-          ID: {String(item.id).slice(0, 8)}
+          ID: {resourceId.slice(0, 8)}
         </span>
 
         <Link

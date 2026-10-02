@@ -84,13 +84,14 @@ export default function Filter({
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mt-2">
         {filtered.map((item) => {
-          const itemId = String(item.id ?? item._id ?? "");
+          const itemId = String(item.id || item._id || "");
 
           return (
             <ResourceCard
               key={itemId}
               item={{
                 id: itemId,
+                _id: item._id,
                 type: item.type,
                 language: item.language,
                 grade: item.grade,

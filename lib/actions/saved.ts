@@ -6,6 +6,52 @@ import { ObjectId } from "mongodb";
 import { auth } from "@/lib/auth";
 import clientPromise from "@/lib/mongodb";
 
+function normalizeSavedId(value: unknown): string | null {
+  if (value === null || value === undefined) {
+    return null;
+  }
+
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  }
+
+  if (typeof value === "number" || typeof value === "boolean") {
+    return String(value);
+  }
+
+  if (typeof value === "object") {
+    const maybeObject = value as {
+      toHexString?: () => string;
+      toString?: () => string;
+    };
+
+    if (typeof maybeObject.toHexString === "function") {
+      const hex = maybeObject.toHexString();
+      if (hex) return hex;
+    }
+
+    const stringValue =
+      typeof maybeObject.toString === "function"
+        ? maybeObject.toString()
+        : String(value);
+
+    if (stringValue && stringValue !== "[object Object]") {
+      return stringValue;
+    }
+  }
+
+  return null;
+}
+
+function normalizeSavedIds(values: unknown[] = []): string[] {
+  return [
+    ...new Set(
+      values.map(normalizeSavedId).filter((id): id is string => Boolean(id)),
+    ),
+  ];
+}
+
 type User = {
   _id?: ObjectId | string;
   id?: string;
@@ -40,7 +86,7 @@ export async function getSavedIdsForCurrentUser() {
   }
 
   const user = await findUserBySessionId(session.user.id);
-  return user?.saved ?? [];
+  return normalizeSavedIds(user?.saved ?? []);
 }
 
 export async function getSavedItemsForCurrentUser() {
@@ -52,9 +98,15 @@ export async function getSavedItemsForCurrentUser() {
 
   const client = await clientPromise;
   const db = client.db("data");
+  const objectIdValues = savedIds
+    .filter((id) => ObjectId.isValid(id))
+    .map((id) => new ObjectId(id));
+
   const docs = await db
     .collection("info")
-    .find({ id: { $in: savedIds } })
+    .find({
+      $or: [{ id: { $in: savedIds } }, { _id: { $in: objectIdValues } }],
+    })
     .toArray();
 
   return docs.map((doc) => {
@@ -84,11 +136,17 @@ export async function toggleSaved(resourceId: string) {
   const users = db.collection<User>("user");
 
   const user = await findUserBySessionId(session.user.id);
-  const saved = user?.saved ?? [];
-  const isSaved = saved.includes(resourceId);
+  const saved = normalizeSavedIds(user?.saved ?? []);
+  const normalizedResourceId = normalizeSavedIds([resourceId])[0];
+
+  if (!normalizedResourceId) {
+    throw new Error("Invalid resource ID");
+  }
+
+  const isSaved = saved.includes(normalizedResourceId);
   const nextSaved = isSaved
-    ? saved.filter((id) => id !== resourceId)
-    : [...new Set([...saved, resourceId])];
+    ? saved.filter((id) => id !== normalizedResourceId)
+    : [...new Set([...saved, normalizedResourceId])];
 
   const updateQuery = user?._id ? { _id: user._id } : { id: session.user.id };
   const normalizedId = ObjectId.isValid(session.user.id)
