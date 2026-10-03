@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
-
-type ChangePasswordModalProps = {
-  open: boolean;
-  onClose: () => void;
-};
+import type { ChangePasswordModalProps } from "@/types/ui";
 
 export default function ChangePasswordModal({
   open,

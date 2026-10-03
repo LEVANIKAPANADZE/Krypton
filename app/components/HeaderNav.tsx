@@ -2,15 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-type NavItem = {
-  label: string;
-  path: string;
-};
-
-type HeaderNavProps = {
-  navItems: NavItem[];
-};
+import type { HeaderNavProps } from "@/types/ui";
 
 export default function HeaderNav({ navItems }: HeaderNavProps) {
   const pathname = usePathname();

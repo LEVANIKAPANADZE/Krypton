@@ -3,11 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { toggleSaved } from "@/lib/actions/saved";
-
-interface SaveButtonProps {
-  resourceId: string;
-  initialSaved: boolean;
-}
+import type { SaveButtonProps } from "@/types/ui";
 
 export default function SaveButton({
   resourceId,

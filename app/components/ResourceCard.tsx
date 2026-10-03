@@ -3,21 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SaveButton from "../components/saveButton";
-
-interface ResourceCardProps {
-  item: {
-    id?: string;
-    _id?: string;
-    type?: string;
-    language?: string;
-    grade?: string;
-    icon?: string;
-    title?: string;
-    description?: string;
-    link?: string;
-  };
-  initialSaved?: boolean | undefined;
-}
+import type { ResourceCardProps } from "@/types/ui";
 
 export default function ResourceCard({
   item,

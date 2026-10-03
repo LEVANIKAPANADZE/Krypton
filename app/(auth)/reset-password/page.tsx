@@ -1,11 +1,5 @@
 import ResetPasswordForm from "./ResetPasswordForm";
-
-type ResetPasswordPageProps = {
-  searchParams?: Promise<{
-    token?: string | string[];
-    error?: string | string[];
-  }>;
-};
+import type { ResetPasswordPageProps } from "@/types/ui";
 
 export default async function ResetPasswordPage({
   searchParams,

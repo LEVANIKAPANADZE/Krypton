@@ -6,23 +6,28 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { loginSchema } from "@/lib/auth-validation";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
+import type {
+  AuthFormErrors,
+  AuthInputConfig,
+  LoginFormData,
+} from "@/types/api";
 
 export default function Login() {
   const router = useRouter();
 
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
   });
 
-  const [errors, setErrors] = useState<any>({
+  const [errors, setErrors] = useState<AuthFormErrors<"email" | "password">>({
     email: "",
     password: "",
   });
 
   const [emailNotVerified, setEmailNotVerified] = useState(false);
 
-  const inputs: any = [
+  const inputs: AuthInputConfig<"email" | "password">[] = [
     {
       placeholder: "ელ. ფოსტა",
       inputName: "email",
@@ -37,7 +42,7 @@ export default function Login() {
     },
   ];
 
-  async function handleSubmission(event: React.FormEvent) {
+  async function handleSubmission(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setErrors({
@@ -49,7 +54,7 @@ export default function Login() {
     const result = loginSchema.safeParse(formData);
 
     if (!result.success) {
-      const fieldErrors = {
+      const fieldErrors: AuthFormErrors<"email" | "password"> = {
         email: "",
         password: "",
       };
@@ -57,12 +62,14 @@ export default function Login() {
       for (const issue of result.error.issues) {
         const field = issue.path[0];
 
-        if (field === "email" && !fieldErrors.email) {
-          fieldErrors.email = issue.message;
-        }
+        if (typeof field === "string") {
+          if (field === "email" && !fieldErrors.email) {
+            fieldErrors.email = issue.message;
+          }
 
-        if (field === "password" && !fieldErrors.password) {
-          fieldErrors.password = issue.message;
+          if (field === "password" && !fieldErrors.password) {
+            fieldErrors.password = issue.message;
+          }
         }
       }
 
@@ -113,39 +120,45 @@ export default function Login() {
           noValidate
           className="flex flex-col gap-3 md:gap-4"
         >
-          {inputs.map((item: any) => (
-            <div key={item.inputName} className="flex flex-col">
-              <div className="relative">
-                <input
-                  type={item.type}
-                  name={item.inputName}
-                  placeholder={item.placeholder}
-                  value={formData[item.inputName]}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      [item.inputName]: e.target.value,
-                    })
-                  }
-                  className="h-11 w-full rounded-xl border border-gray-800 bg-white/[0.02] pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-gray-500 focus:border-cyan-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-cyan-500/10 md:h-12 md:text-base"
-                />
+          {inputs.map((item) => {
+            const fieldError = errors[item.inputName];
 
-                <img
-                  src={item.icon}
-                  alt={`${item.inputName} icon`}
-                  className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 opacity-50"
-                />
-              </div>
+            return (
+              <div key={item.inputName} className="flex flex-col">
+                <div className="relative">
+                  <input
+                    type={item.type}
+                    name={item.inputName}
+                    placeholder={item.placeholder}
+                    value={formData[item.inputName]}
+                    onChange={(event) => {
+                      const value = event.target.value;
 
-              <div className="mt-1 min-h-[18px] px-1">
-                {errors[item.inputName] && (
-                  <span className="text-xs text-red-400 md:text-sm">
-                    {errors[item.inputName]}
-                  </span>
-                )}
+                      setFormData((current) => ({
+                        ...current,
+                        [item.inputName]: value,
+                      }));
+                    }}
+                    className="h-11 w-full rounded-xl border border-gray-800 bg-white/[0.02] pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-gray-500 focus:border-cyan-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-cyan-500/10 md:h-12 md:text-base"
+                  />
+
+                  <img
+                    src={item.icon}
+                    alt={`${item.inputName} icon`}
+                    className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 opacity-50"
+                  />
+                </div>
+
+                <div className="mt-1 min-h-[18px] px-1">
+                  {fieldError && (
+                    <span className="text-xs text-red-400 md:text-sm">
+                      {fieldError}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           {emailNotVerified && (
             <Link

@@ -5,6 +5,8 @@ import { revalidatePath } from "next/cache";
 import { ObjectId } from "mongodb";
 import { auth } from "@/lib/auth";
 import clientPromise from "@/lib/mongodb";
+import type { AppUser } from "@/types/user";
+import type { SavedContentDocument, SavedContentItem } from "@/types/content";
 
 function normalizeSavedId(value: unknown): string | null {
   if (value === null || value === undefined) {
@@ -52,16 +54,10 @@ function normalizeSavedIds(values: unknown[] = []): string[] {
   ];
 }
 
-type User = {
-  _id?: ObjectId | string;
-  id?: string;
-  saved?: string[];
-};
-
 async function findUserBySessionId(sessionUserId: string) {
   const client = await clientPromise;
   const db = client.db("data");
-  const users = db.collection<User>("user");
+  const users = db.collection<AppUser>("user");
   const objectId = ObjectId.isValid(sessionUserId)
     ? new ObjectId(sessionUserId)
     : null;
@@ -109,11 +105,18 @@ export async function getSavedItemsForCurrentUser() {
     })
     .toArray();
 
-  return docs.map((doc) => {
-    const { _id, ...rest } = doc as any;
+  return docs.map((doc): SavedContentItem => {
+    const { _id, ...rest } = doc as SavedContentDocument;
+    const documentId =
+      _id !== undefined && _id !== null
+        ? String(_id)
+        : typeof rest.id === "string"
+          ? rest.id
+          : "";
+
     return {
       ...rest,
-      _id: _id ? String(_id) : undefined,
+      _id: documentId,
     };
   });
 }
@@ -133,7 +136,7 @@ export async function toggleSaved(resourceId: string) {
 
   const client = await clientPromise;
   const db = client.db("data");
-  const users = db.collection<User>("user");
+  const users = db.collection<AppUser>("user");
 
   const user = await findUserBySessionId(session.user.id);
   const saved = normalizeSavedIds(user?.saved ?? []);

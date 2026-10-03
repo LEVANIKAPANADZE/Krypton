@@ -6,30 +6,18 @@ import {
   getSavedIdsForCurrentUser,
   getSavedItemsForCurrentUser,
 } from "@/lib/actions/saved";
+import type { PageItem, PageType } from "@/types/content";
 
-type Type = "resource" | "task" | "project" | "saved";
+const validTypes: PageType[] = ["resource", "task", "project", "saved"];
 
-type PageItem = {
-  _id: string;
-  type?: string;
-  language?: string;
-  grade?: string;
-  icon?: string;
-  title?: string;
-  description?: string;
-  link?: string;
-};
-
-const validTypes: Type[] = ["resource", "task", "project", "saved"];
-
-const titleMap: Record<Type, string> = {
+const titleMap: Record<PageType, string> = {
   resource: "რესურსები",
   task: "დავალებები",
   project: "პროექტები",
   saved: "შენახული რესურსები",
 };
 
-const countLabelMap: Record<Type, string> = {
+const countLabelMap: Record<PageType, string> = {
   resource: "მასალა",
   task: "დავალება",
   project: "პროექტი",
@@ -43,11 +31,11 @@ export default async function Page({
 }) {
   const { type } = await params;
 
-  if (!validTypes.includes(type as Type)) {
+  if (!validTypes.includes(type as PageType)) {
     notFound();
   }
 
-  const currentType = type as Type;
+  const currentType = type as PageType;
 
   let data: PageItem[] = [];
 

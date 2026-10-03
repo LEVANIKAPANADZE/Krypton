@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-
-type ResetPasswordFormProps = {
-  token: string;
-  initialError: string;
-};
+import type { ResetPasswordFormProps } from "@/types/ui";
 
 export default function ResetPasswordForm({
   token,

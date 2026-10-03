@@ -1,9 +1,5 @@
 import Image from "next/image";
-
-interface SearchBarProps {
-  search: string;
-  setSearch: (search: string) => void;
-}
+import type { SearchBarProps } from "@/types/ui";
 
 export default function SearchBar({ search, setSearch }: SearchBarProps) {
   return (

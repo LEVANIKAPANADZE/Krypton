@@ -1,11 +1,6 @@
 "use client";
 
-interface FilterControlsProps {
-  language: string;
-  setLanguage: (lang: string) => void;
-  grade: string;
-  setGrade: (g: string) => void;
-}
+import type { FilterControlsProps } from "@/types/ui";
 
 export default function FilterControls({
   language,

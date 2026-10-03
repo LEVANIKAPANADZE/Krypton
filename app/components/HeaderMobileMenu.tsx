@@ -2,16 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
-type NavItem = {
-  label: string;
-  path: string;
-};
-
-type HeaderMobileMenuProps = {
-  navItems: NavItem[];
-  isAuthenticated: boolean;
-};
+import type { HeaderMobileMenuProps } from "@/types/ui";
 
 export default function HeaderMobileMenu({
   navItems,

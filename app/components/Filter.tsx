@@ -4,25 +4,7 @@ import { useState } from "react";
 import FilterControls from "./FilterControls";
 import ResourceCard from "./ResourceCard";
 import SearchBar from "./SearchBar";
-
-interface FilterItem {
-  id?: string;
-  _id?: string;
-  type?: string;
-  language?: string;
-  grade?: string;
-  icon?: string;
-  title?: string;
-  description?: string;
-  link?: string;
-}
-
-interface FilterProps {
-  data: FilterItem[];
-  type: string;
-  savedIds?: string[];
-  showSaveButton?: boolean;
-}
+import type { FilterProps } from "@/types/ui";
 
 export default function Filter({
   data,

@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { getAuthErrorMessage } from "@/lib/auth-errors";
-
-type DeleteAccountModalProps = {
-  open: boolean;
-  onClose: () => void;
-};
+import type { DeleteAccountModalProps } from "@/types/ui";
 
 export default function DeleteAccountModal({
   open,
