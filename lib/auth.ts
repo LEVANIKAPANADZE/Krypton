@@ -71,6 +71,10 @@ Krypton`,
   },
 
   user: {
+    deleteUser: {
+      enabled: true,
+    },
+
     additionalFields: {
       saved: {
         type: "string[]",

@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import ChangePasswordModal from "./ChangePasswordModal";
+import DeleteAccountModal from "./DeleteAccountModal";
 
 export default function ProfileActions() {
   const router = useRouter();
 
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);
+  const [deleteAccountOpen, setDeleteAccountOpen] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -26,7 +28,7 @@ export default function ProfileActions() {
         return;
       }
 
-      router.push("/login");
+      router.replace("/login");
       router.refresh();
     } catch {
       setError("დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ თავიდან.");
@@ -58,6 +60,7 @@ export default function ProfileActions() {
 
         <button
           type="button"
+          onClick={() => setDeleteAccountOpen(true)}
           className="w-full cursor-pointer rounded-full border border-red-900/40 bg-red-950/20 px-6 py-2.5 text-sm text-red-400 transition-colors duration-200 hover:border-red-800/60 hover:bg-red-950/40 sm:w-auto md:text-base"
         >
           ანგარიშის წაშლა
@@ -76,6 +79,11 @@ export default function ProfileActions() {
       <ChangePasswordModal
         open={changePasswordOpen}
         onClose={() => setChangePasswordOpen(false)}
+      />
+
+      <DeleteAccountModal
+        open={deleteAccountOpen}
+        onClose={() => setDeleteAccountOpen(false)}
       />
     </>
   );
