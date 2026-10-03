@@ -22,22 +22,51 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     minPasswordLength: 8,
     maxPasswordLength: 20,
+    resetPasswordTokenExpiresIn: 3600,
+    revokeSessionsOnPasswordReset: true,
+
+    sendResetPassword: async ({ user, url }) => {
+      void sendEmail(
+        user.email,
+        "პაროლის აღდგენა — Krypton",
+        `გამარჯობა ${user.name},
+
+მიღებულია მოთხოვნა თქვენი Krypton ანგარიშის პაროლის აღდგენაზე.
+
+პაროლის ახალი პაროლით შესაცვლელად დააჭირეთ შემდეგ ბმულს:
+
+${url}
+
+ბმული მოქმედებს 1 საათის განმავლობაში.
+
+თუ თქვენ არ მოგითხოვიათ პაროლის აღდგენა, შეგიძლიათ უგულებელყოთ ეს წერილი.
+
+Krypton`,
+      );
+    },
   },
 
   emailVerification: {
     sendOnSignUp: true,
+
     sendVerificationEmail: async ({ user, url }) => {
       await sendEmail(
         user.email,
         "დაადასტურეთ თქვენი ელ. ფოსტა — Krypton",
         `გამარჯობა ${user.name},
-      გთხოვთ, დაადასტუროთ თქვენი ელ. ფოსტის მისამართი Krypton-ის ანგარიშის გასააქტიურებლად.
-      დადასტურებისთვის დააჭირეთ შემდეგ ბმულს:
-        ${url}
-        თუ ეს ანგარიში თქვენ არ შეგიქმნიათ, შეგიძლიათ უგულებელყოთ ეს წერილი.
-              Krypton`,
+
+გთხოვთ, დაადასტუროთ თქვენი ელ. ფოსტის მისამართი Krypton-ის ანგარიშის გასააქტიურებლად.
+
+დადასტურებისთვის დააჭირეთ შემდეგ ბმულს:
+
+${url}
+
+თუ ეს ანგარიში თქვენ არ შეგიქმნიათ, შეგიძლიათ უგულებელყოთ ეს წერილი.
+
+Krypton`,
       );
     },
+
     autoSignInAfterVerification: true,
   },
 
