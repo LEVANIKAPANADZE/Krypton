@@ -9,11 +9,15 @@ export default function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "";
 
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending, refetch } = authClient.useSession();
 
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   useEffect(() => {
     if (!cooldown) return;
@@ -68,11 +72,19 @@ export default function VerifyEmailContent() {
   }
 
   if (isPending) {
-    return <div>იტვირთება...</div>;
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center p-4">
+        <p className="text-sm text-zinc-400">იტვირთება...</p>
+      </div>
+    );
   }
 
   if (session?.user?.emailVerified) {
-    return <div>გადამისამართება...</div>;
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center p-4">
+        <p className="text-sm text-zinc-400">გადამისამართება...</p>
+      </div>
+    );
   }
 
   const tips = [
@@ -84,38 +96,51 @@ export default function VerifyEmailContent() {
   ];
 
   return (
-    <div>
-      <h1>დაადასტურეთ ელ. ფოსტა</h1>
+    <div className="flex min-h-screen w-full items-center justify-center p-4">
+      <div className="w-full max-w-sm rounded-2xl border border-zinc-800/50 bg-zinc-900/50 px-6 py-8 text-center md:max-w-md md:px-10 md:py-10 xl:max-w-lg xl:px-12 xl:py-12">
+        <h1 className="font-serif font-normal text-2xl text-zinc-100 md:text-3xl">
+          დაადასტურეთ ელ. ფოსტა
+        </h1>
 
-      <p>
-        გამოგიგზავნეთ დამადასტურებელი ბმული თქვენს ელ. ფოსტაზე. გთხოვთ, გახსნათ
-        წერილი და დააჭიროთ ბმულს ანგარიშის დასადასტურებლად.
-      </p>
+        <p className="mt-3 text-sm text-zinc-400 md:text-base">
+          გამოგიგზავნეთ დამადასტურებელი ბმული თქვენს ელ. ფოსტაზე. გთხოვთ,
+          გახსნათ წერილი და დააჭიროთ ბმულს ანგარიშის დასადასტურებლად.
+        </p>
 
-      {email && <p>{email}</p>}
-
-      <div>
-        <p>თუ წერილი ვერ იპოვეთ:</p>
-
-        {tips.map((element) => (
-          <span key={element} className="block">
-            {element}
+        {email && (
+          <span className="mt-4 inline-flex items-center rounded-full border border-amber-300/20 bg-amber-300/10 px-4 py-1.5 text-sm text-amber-300">
+            {email}
           </span>
-        ))}
+        )}
+
+        <div className="mt-6 rounded-xl border border-zinc-800/50 bg-zinc-900/50 p-4 text-left">
+          <p className="text-sm font-medium text-zinc-100 mb-2">
+            თუ წერილი ვერ იპოვეთ:
+          </p>
+
+          <ul className="flex flex-col gap-1.5">
+            {tips.map((element) => (
+              <li key={element} className="text-sm text-zinc-400">
+                {element}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <button
+          onClick={resendEmail}
+          disabled={loading || !email || cooldown > 0}
+          className="mt-6 h-11 w-full cursor-pointer rounded-xl bg-amber-400 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-300 disabled:cursor-not-allowed disabled:opacity-50 md:h-12 md:text-base"
+        >
+          {loading
+            ? "იგზავნება..."
+            : cooldown > 0
+              ? `ხელახლა გაგზავნა ${cooldown} წამში`
+              : "დადასტურების ბმულის ხელახლა გაგზავნა"}
+        </button>
+
+        {message && <p className="mt-4 text-sm text-zinc-300">{message}</p>}
       </div>
-
-      <button
-        onClick={resendEmail}
-        disabled={loading || !email || cooldown > 0}
-      >
-        {loading
-          ? "იგზავნება..."
-          : cooldown > 0
-            ? `ხელახლა გაგზავნა ${cooldown} წამში`
-            : "დადასტურების ბმულის ხელახლა გაგზავნა"}
-      </button>
-
-      {message && <p>{message}</p>}
     </div>
   );
 }

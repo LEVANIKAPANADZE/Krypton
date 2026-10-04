@@ -114,14 +114,14 @@ export default function Register() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center p-4">
-      <div className="w-full max-w-sm rounded-2xl border border-gray-800 bg-[#0a0a0a] px-6 py-8 shadow-2xl md:max-w-md md:px-10 md:py-10 xl:max-w-lg xl:px-12 xl:py-12">
+      <div className="w-full max-w-sm rounded-2xl border border-zinc-800/50 bg-zinc-900/50 px-6 py-8 md:max-w-md md:px-10 md:py-10 xl:max-w-lg xl:px-12 xl:py-12">
         <div className="mb-8 text-center md:mb-10">
-          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-            <span className="text-cyan-400">შექმენით </span>
-            <span className="text-white">ანგარიში</span>
+          <h1 className="font-serif font-normal text-2xl tracking-tight md:text-3xl">
+            <span className="text-amber-300">შექმენით </span>
+            <span className="text-zinc-100">ანგარიში</span>
           </h1>
 
-          <p className="mt-2 text-sm text-gray-400 md:mt-3 md:text-base">
+          <p className="mt-2 text-sm text-zinc-400 md:mt-3 md:text-base">
             შემოუერთდით Krypton-ს და დაიწყეთ ქიმიის შესწავლა
           </p>
         </div>
@@ -150,13 +150,13 @@ export default function Register() {
                         [item.inputName]: value,
                       }));
                     }}
-                    className="h-11 w-full rounded-xl border border-gray-800 bg-white/[0.02] pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-gray-500 focus:border-cyan-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-cyan-500/10 md:h-12 md:text-base"
+                    className="h-11 w-full rounded-xl border border-zinc-800/50 bg-zinc-900/50 pl-11 pr-4 text-sm text-zinc-100 outline-none transition-colors placeholder:text-zinc-500 focus:border-amber-300/50 focus:ring-2 focus:ring-amber-300/20 md:h-12 md:text-base"
                   />
 
                   <img
                     src={item.icon}
                     alt={`${item.inputName} icon`}
-                    className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 opacity-50"
+                    className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 opacity-40"
                   />
                 </div>
 
@@ -173,24 +173,24 @@ export default function Register() {
 
           <button
             type="submit"
-            className="mt-1 h-11 cursor-pointer rounded-xl bg-cyan-500 text-sm font-semibold text-black transition-all hover:bg-cyan-400 active:scale-[0.98] md:h-12 md:text-base"
+            className="mt-1 h-11 cursor-pointer rounded-xl bg-amber-400 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-300 md:h-12 md:text-base"
           >
             რეგისტრაცია
           </button>
         </form>
 
         <div className="my-6 flex items-center gap-3 md:my-8 md:gap-4">
-          <div className="h-px flex-1 bg-gray-800" />
+          <div className="h-px flex-1 bg-zinc-800/50" />
 
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 md:text-xs">
+          <span className="text-[10px] uppercase tracking-widest text-zinc-500 md:text-xs">
             ან
           </span>
 
-          <div className="h-px flex-1 bg-gray-800" />
+          <div className="h-px flex-1 bg-zinc-800/50" />
         </div>
 
         <div className="flex justify-center">
-          <button className="group flex cursor-pointer items-center gap-2 rounded-xl border border-gray-700 bg-gray-800/60 px-5 py-2.5 transition-colors hover:bg-gray-800 md:gap-3">
+          <button className="group flex cursor-pointer items-center gap-2 rounded-xl border border-zinc-800/50 bg-zinc-900/50 px-5 py-2.5 transition-colors hover:border-amber-300/50 hover:bg-zinc-800/50 md:gap-3">
             <img
               src="/Guest.png"
               alt="Guest logo"
@@ -199,18 +199,18 @@ export default function Register() {
 
             <Link
               href="/"
-              className="text-sm font-medium text-gray-300 transition-colors group-hover:text-white md:text-base"
+              className="text-sm font-medium text-zinc-300 transition-colors group-hover:text-white md:text-base"
             >
               სტუმრის სტატუსით გაგრძელება
             </Link>
           </button>
         </div>
 
-        <p className="mt-8 text-center text-sm text-gray-500 md:mt-10 md:text-base">
+        <p className="mt-8 text-center text-sm text-zinc-500 md:mt-10 md:text-base">
           უკვე გაქვთ ანგარიში?{" "}
           <Link
             href="/login"
-            className="font-semibold text-cyan-400 underline-offset-4 transition-colors hover:text-cyan-300 hover:underline"
+            className="font-semibold text-amber-300 underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             შესვლა
           </Link>
