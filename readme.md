@@ -5,16 +5,17 @@ A modern chemistry learning platform built for any student — structured learni
 [![Live Site](https://img.shields.io/badge/Live-krypton181.vercel.app-F59E0B?style=for-the-badge&logo=vercel&logoColor=white)](https://krypton181.vercel.app)
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Better Auth](https://img.shields.io/badge/Better%20Auth-18181B?style=for-the-badge)
+![Nodemailer](https://img.shields.io/badge/Nodemailer-18181B?style=for-the-badge)
 
 ---
 
 ## 🌍 About
 
-Krypton was built to make chemistry easier, clearer, and more engaging to learn. Instead of overwhelming students with memorization, the platform presents material in a logical, step-by-step structure that supports real understanding.
+Krypton was built to make chemistry easier, clearer, and more engaging to learn. Instead of overwhelming students with memorization, the platform presents material in a logical, step-by-step structure that supports real understanding — built end-to-end as a full-stack application, not a static template.
 
 Krypton helps students:
 
@@ -25,15 +26,67 @@ Krypton helps students:
 
 ---
 
-## ✨ Features
+## 🧩 Core Features
 
-- ⚛️ Structured chemistry lessons
-- 📚 Organized educational resources
-- 🧪 Clean, interactive UI
-- 🔍 Search and filtering across resources
-- 📱 Fully responsive, mobile-first design
-- 🌙 Dark-themed interface
-- 🚀 Fast, optimized frontend
+**Learning experience**
+- Browsable Resources, Projects, and Tasks, organized by category
+- Real-time search across titles and descriptions
+- Filtering by language and grade level
+- Per-user saved/bookmarked resources, persisted to the database
+
+**Accounts & authentication**
+- Email/password authentication via Better Auth, backed by custom Next.js route handlers
+- Email verification flow with automated transactional emails via Nodemailer
+- Resend-verification with cooldown handling
+- Guest access for browsing without an account
+- Full account management — password changes, logout, account deletion
+
+**Interface**
+- Fully custom dark theme with a consistent design system across every page
+- Fully responsive layout — distinct mobile, tablet, and desktop behavior throughout
+- Custom slide-in mobile navigation
+- Accessible interactive states (keyboard focus rings, `aria` labeling) on every control
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer          | Technology                          |
+| -------------- | ------------------------------------ |
+| Framework      | Next.js (App Router, Route Handlers) |
+| Language       | TypeScript                           |
+| Styling        | Tailwind CSS                         |
+| Database       | MongoDB                              |
+| Authentication | Better Auth                          |
+| Email          | Nodemailer                           |
+| Deployment     | Vercel                               |
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+├── (auth)/
+│   ├── login/
+│   ├── register/
+│   └── verify-email/
+├── (main)/
+├── api/
+components/
+├── Header.tsx
+├── HeaderNav.tsx
+├── HeaderMobileMenu.tsx
+├── Footer.tsx
+├── Filter.tsx
+├── FilterControls.tsx
+├── SearchBar.tsx
+├── ResourceCard.tsx
+└── SaveButton.tsx
+lib/
+public/
+└── navIcons/
+```
 
 ---
 
@@ -48,16 +101,10 @@ Krypton's goal is to turn chemistry from a difficult, overwhelming subject into 
 
 ---
 
-## 🛠️ Tech Stack
-
-Next.js · React · TypeScript · Tailwind CSS · MongoDB
-
----
-
 ## 👤 Developer
 
 Built by **Kapanadze Levani**
-[Portfolio](https://my-contacts-hazel.vercel.app)
+[Socials](https://my-contacts-hazel.vercel.app)
 
 ---
 
