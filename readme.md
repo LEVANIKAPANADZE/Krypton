@@ -103,7 +103,7 @@ Krypton's goal is to turn chemistry from a difficult, overwhelming subject into 
 
 ## 👤 Developer
 
-Built by **Kapanadze Levani**
+Built by **Levani Kapanadze**
 [Socials](https://my-contacts-hazel.vercel.app)
 
 ---
